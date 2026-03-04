@@ -28,6 +28,7 @@ enum Area: string implements Unit
     case Acre                          = 'ACR';
     case CircularMil                   = 'M47';
     case BaseBox                       = 'BB';
+    case Ping                          = 'E19';
 
     public function code(): string
     {
@@ -56,6 +57,7 @@ enum Area: string implements Unit
             self::Acre                          => 'acre',
             self::CircularMil                   => 'cmil',
             self::BaseBox                       => 'base box',
+            self::Ping                          => 'E19',
         };
     }
 
@@ -81,6 +83,7 @@ enum Area: string implements Unit
             self::Acre                          => 'acre',
             self::CircularMil                   => 'circular mil',
             self::BaseBox                       => 'base box',
+            self::Ping                          => 'ping',
         };
     }
 
@@ -114,6 +117,7 @@ enum Area: string implements Unit
             self::Acre                          => '4046.873',
             self::CircularMil                   => '0.0000000005067075',
             self::BaseBox                       => '20.2322176',
+            self::Ping                          => '3.305',
         };
     }
 

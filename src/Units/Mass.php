@@ -38,6 +38,11 @@ enum Mass: string implements Unit
     case Grain                          = 'GRN';
     case PoundNet                       = 'PN';
     case Pennyweight                    = 'DWT';
+    case CentalUK                       = 'CNT';
+    case MetricCarat                    = 'CTM';
+    case TroyPoundUS                    = 'LBT';
+    case QuarterUK                      = 'QTR';
+    case Scruple                        = 'SCR';
 
     public function code(): string
     {
@@ -76,6 +81,11 @@ enum Mass: string implements Unit
             self::Grain                          => 'gr',
             self::PoundNet                       => 'PN',
             self::Pennyweight                    => 'dwt',
+            self::CentalUK                       => 'CNT',
+            self::MetricCarat                    => 'CTM',
+            self::TroyPoundUS                    => 'LBT',
+            self::QuarterUK                      => 'Qr (UK)',
+            self::Scruple                        => 'SCR',
         };
     }
 
@@ -111,6 +121,11 @@ enum Mass: string implements Unit
             self::Grain                          => 'grain',
             self::PoundNet                       => 'pound net',
             self::Pennyweight                    => 'pennyweight',
+            self::CentalUK                       => 'cental (UK)',
+            self::MetricCarat                    => 'metric carat',
+            self::TroyPoundUS                    => 'troy pound (US)',
+            self::QuarterUK                      => 'quarter (UK)',
+            self::Scruple                        => 'scruple',
         };
     }
 
@@ -154,6 +169,11 @@ enum Mass: string implements Unit
             self::Grain                          => '0.00006479891',
             self::PoundNet                       => '0.45359237',
             self::Pennyweight                    => '0.001555174',
+            self::CentalUK                       => '45.359237',
+            self::MetricCarat                    => '0.0002',
+            self::TroyPoundUS                    => '0.3732417',
+            self::QuarterUK                      => '12.70059',
+            self::Scruple                        => '0.001295982',
         };
     }
 

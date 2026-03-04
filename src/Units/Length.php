@@ -36,6 +36,11 @@ enum Length: string implements Unit
     case Link                     = 'LK';
     case LinearMetre              = 'LM';
     case MileStatuteMile          = 'SMI';
+    case RackUnit                 = 'H80';
+    case BigPoint                 = 'H82';
+    case PrintPoint               = 'N3';
+    case Pica                     = 'R1';
+    case FootPerThousand          = 'E33';
 
     public function code(): string
     {
@@ -72,6 +77,11 @@ enum Length: string implements Unit
             self::Link                     => 'lnk',
             self::LinearMetre              => 'lm',
             self::MileStatuteMile          => 'mile',
+            self::RackUnit                 => 'U',
+            self::BigPoint                 => 'bp',
+            self::PrintPoint               => 'N3',
+            self::Pica                     => 'R1',
+            self::FootPerThousand          => 'E33',
         };
     }
 
@@ -105,6 +115,11 @@ enum Length: string implements Unit
             self::Link                     => 'link',
             self::LinearMetre              => 'linear metre',
             self::MileStatuteMile          => 'mile (statute mile)',
+            self::RackUnit                 => 'rack unit',
+            self::BigPoint                 => 'big point',
+            self::PrintPoint               => 'print point',
+            self::Pica                     => 'pica',
+            self::FootPerThousand          => 'foot per thousand',
         };
     }
 
@@ -146,6 +161,11 @@ enum Length: string implements Unit
             self::Link                     => '0.201168',
             self::LinearMetre              => '1',
             self::MileStatuteMile          => '1609.344',
+            self::RackUnit                 => '0.04445',
+            self::BigPoint                 => '0.0003527778',
+            self::PrintPoint               => '0.000351',
+            self::Pica                     => '0.004217518',
+            self::FootPerThousand          => '0.0003048',
         };
     }
 

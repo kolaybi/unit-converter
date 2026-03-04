@@ -28,6 +28,11 @@ enum DimensionlessConcentration: string implements Unit
     case CubicCentimetrePerCubicMetre = 'J87';
     case CubicMillimetrePerCubicMetre = 'L21';
     case CubicDecimetrePerCubicMetre  = 'J91';
+    case PercentPerHundred            = 'H93';
+    case PercentPerThousand           = 'H94';
+    case PercentPerTenThousand        = 'H91';
+    case PercentPerHundredThousand    = 'H92';
+    case OnePerOne                    = 'Q26';
 
     public function code(): string
     {
@@ -56,6 +61,11 @@ enum DimensionlessConcentration: string implements Unit
             self::CubicCentimetrePerCubicMetre => 'cm³/m³',
             self::CubicMillimetrePerCubicMetre => 'mm³/m³',
             self::CubicDecimetrePerCubicMetre  => 'dm³/m³',
+            self::PercentPerHundred            => '%/100',
+            self::PercentPerThousand           => '%/1000',
+            self::PercentPerTenThousand        => '%/10000',
+            self::PercentPerHundredThousand    => '%/100000',
+            self::OnePerOne                    => '1/1',
         };
     }
 
@@ -81,6 +91,11 @@ enum DimensionlessConcentration: string implements Unit
             self::CubicCentimetrePerCubicMetre => 'cubic centimetre per cubic metre',
             self::CubicMillimetrePerCubicMetre => 'cubic millimetre per cubic metre',
             self::CubicDecimetrePerCubicMetre  => 'cubic decimetre per cubic metre',
+            self::PercentPerHundred            => 'percent per hundred',
+            self::PercentPerThousand           => 'percent per thousand',
+            self::PercentPerTenThousand        => 'percent per ten thousand',
+            self::PercentPerHundredThousand    => 'percent per one hundred thousand',
+            self::OnePerOne                    => 'one per one',
         };
     }
 
@@ -114,6 +129,11 @@ enum DimensionlessConcentration: string implements Unit
             self::CubicCentimetrePerCubicMetre => '0.000001',
             self::CubicMillimetrePerCubicMetre => '0.000000001',
             self::CubicDecimetrePerCubicMetre  => '0.001',
+            self::PercentPerHundred            => '0.0001',
+            self::PercentPerThousand           => '0.00001',
+            self::PercentPerTenThousand        => '0.000001',
+            self::PercentPerHundredThousand    => '0.0000001',
+            self::OnePerOne                    => '1',
         };
     }
 

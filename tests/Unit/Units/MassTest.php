@@ -59,7 +59,7 @@ final class MassTest extends TestCase
 
     public function testHasExpectedCaseCount(): void
     {
-        $this->assertCount(29, Mass::cases());
+        $this->assertCount(34, Mass::cases());
     }
 
     #[DataProvider('allCasesProvider')]

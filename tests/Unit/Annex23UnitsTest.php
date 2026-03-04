@@ -127,4 +127,160 @@ final class Annex23UnitsTest extends TestCase
         $result = Converter::convert(1)->from('GRO')->to('DZN');
         $this->assertEqualsWithDelta(12.0, $result->toFloat(), 0.0001);
     }
+
+    // ── Mass: 5 new cases ──
+
+    #[DataProvider('massNewCasesProvider')]
+    public function testMassNewCasesResolveAndConvert(
+        string $code,
+        string $expectedLabel,
+        float $multiplierToKg,
+    ): void {
+        $unit = Converter::unit($code);
+
+        $this->assertSame($code, $unit->code());
+        $this->assertSame($expectedLabel, $unit->label());
+
+        // Convert to kg (multiplier=1) to verify
+        $result = Converter::convert(1)->from($code)->to('KGM');
+        $this->assertEqualsWithDelta($multiplierToKg, $result->toFloat(), 0.001);
+    }
+
+    /**
+     * @return iterable<string, array{string, string, float}>
+     */
+    public static function massNewCasesProvider(): iterable
+    {
+        yield 'CNT (cental UK)' => ['CNT', 'cental (UK)', 45.359237];
+        yield 'CTM (metric carat)' => ['CTM', 'metric carat', 0.0002];
+        yield 'LBT (troy pound US)' => ['LBT', 'troy pound (US)', 0.3732417];
+        yield 'QTR (quarter UK)' => ['QTR', 'quarter (UK)', 12.70059];
+        yield 'SCR (scruple)' => ['SCR', 'scruple', 0.001295982];
+    }
+
+    // ── Length: 5 new cases ──
+
+    #[DataProvider('lengthNewCasesProvider')]
+    public function testLengthNewCasesResolveAndConvert(
+        string $code,
+        string $expectedLabel,
+        float $multiplierToM,
+    ): void {
+        $unit = Converter::unit($code);
+
+        $this->assertSame($code, $unit->code());
+        $this->assertSame($expectedLabel, $unit->label());
+
+        $result = Converter::convert(1)->from($code)->to('MTR');
+        $this->assertEqualsWithDelta($multiplierToM, $result->toFloat(), 0.0000001);
+    }
+
+    /**
+     * @return iterable<string, array{string, string, float}>
+     */
+    public static function lengthNewCasesProvider(): iterable
+    {
+        yield 'H80 (rack unit)' => ['H80', 'rack unit', 0.04445];
+        yield 'H82 (big point)' => ['H82', 'big point', 0.0003527778];
+        yield 'N3 (print point)' => ['N3', 'print point', 0.000351];
+        yield 'R1 (pica)' => ['R1', 'pica', 0.004217518];
+        yield 'E33 (foot per thousand)' => ['E33', 'foot per thousand', 0.0003048];
+    }
+
+    // ── DimensionlessConcentration: 5 new cases ──
+
+    #[DataProvider('dimConcNewCasesProvider')]
+    public function testDimConcNewCasesResolveAndConvert(
+        string $code,
+        string $expectedLabel,
+        float $multiplier,
+    ): void {
+        $unit = Converter::unit($code);
+
+        $this->assertSame($code, $unit->code());
+        $this->assertSame($expectedLabel, $unit->label());
+
+        // Convert to percent (multiplier=0.01)
+        $result = Converter::convert(1)->from($code)->to('P1');
+        $this->assertEqualsWithDelta($multiplier / 0.01, $result->toFloat(), 0.0001);
+    }
+
+    /**
+     * @return iterable<string, array{string, string, float}>
+     */
+    public static function dimConcNewCasesProvider(): iterable
+    {
+        yield 'H93 (percent per hundred)' => ['H93', 'percent per hundred', 0.0001];
+        yield 'H94 (percent per thousand)' => ['H94', 'percent per thousand', 0.00001];
+        yield 'H91 (percent per ten thousand)' => ['H91', 'percent per ten thousand', 0.000001];
+        yield 'H92 (percent per hundred thousand)' => ['H92', 'percent per one hundred thousand', 0.0000001];
+        yield 'Q26 (one per one)' => ['Q26', 'one per one', 1.0];
+    }
+
+    // ── Frequency: 3 new cases ──
+
+    #[DataProvider('frequencyNewCasesProvider')]
+    public function testFrequencyNewCasesResolveAndConvert(
+        string $code,
+        string $expectedLabel,
+        float $multiplierToHz,
+    ): void {
+        $unit = Converter::unit($code);
+
+        $this->assertSame($code, $unit->code());
+        $this->assertSame($expectedLabel, $unit->label());
+
+        $result = Converter::convert(1)->from($code)->to('HTZ');
+        $this->assertEqualsWithDelta($multiplierToHz, $result->toFloat(), 0.0000001);
+    }
+
+    /**
+     * @return iterable<string, array{string, string, float}>
+     */
+    public static function frequencyNewCasesProvider(): iterable
+    {
+        yield 'BPM (beats per minute)' => ['BPM', 'beats per minute', 0.01666666666666666];
+        yield 'E91 (reciprocal day)' => ['E91', 'reciprocal day', 0.00001157407407407];
+        yield 'FIT (failures in time)' => ['FIT', 'failures in time', 0.000000000000277778];
+    }
+
+    // ── Time: 2 new cases ──
+
+    #[DataProvider('timeNewCasesProvider')]
+    public function testTimeNewCasesResolveAndConvert(
+        string $code,
+        string $expectedLabel,
+        float $multiplierToS,
+    ): void {
+        $unit = Converter::unit($code);
+
+        $this->assertSame($code, $unit->code());
+        $this->assertSame($expectedLabel, $unit->label());
+
+        $result = Converter::convert(1)->from($code)->to('SEC');
+        $this->assertEqualsWithDelta($multiplierToS, $result->toFloat(), 0.01);
+    }
+
+    /**
+     * @return iterable<string, array{string, string, float}>
+     */
+    public static function timeNewCasesProvider(): iterable
+    {
+        yield 'M36 (30-day month)' => ['M36', '30-day month', 2592000.0];
+        yield 'M37 (actual/360)' => ['M37', 'actual/360', 31104000.0];
+    }
+
+    // ── Area: 1 new case ──
+
+    public function testPingResolvesAndConverts(): void
+    {
+        $unit = Converter::unit('E19');
+
+        $this->assertSame('E19', $unit->code());
+        $this->assertSame('ping', $unit->label());
+
+        // 1 ping = 3.305 m²
+        $result = Converter::convert(1)->from('E19')->to('MTK');
+        $this->assertEqualsWithDelta(3.305, $result->toFloat(), 0.001);
+    }
 }

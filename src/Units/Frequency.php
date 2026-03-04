@@ -16,6 +16,9 @@ enum Frequency: string implements Unit
     case Terahertz        = 'D29';
     case ReciprocalSecond = 'C97';
     case ReciprocalMinute = 'C94';
+    case BeatsPerMinute   = 'BPM';
+    case ReciprocalDay    = 'E91';
+    case FailuresInTime   = 'FIT';
 
     public function code(): string
     {
@@ -32,6 +35,9 @@ enum Frequency: string implements Unit
             self::Terahertz        => 'THz',
             self::ReciprocalSecond => '/s',
             self::ReciprocalMinute => '/min',
+            self::BeatsPerMinute   => 'BPM',
+            self::ReciprocalDay    => 'd⁻¹',
+            self::FailuresInTime   => 'FIT',
         };
     }
 
@@ -45,6 +51,9 @@ enum Frequency: string implements Unit
             self::Terahertz        => 'terahertz',
             self::ReciprocalSecond => 'reciprocal second',
             self::ReciprocalMinute => 'reciprocal minute',
+            self::BeatsPerMinute   => 'beats per minute',
+            self::ReciprocalDay    => 'reciprocal day',
+            self::FailuresInTime   => 'failures in time',
         };
     }
 
@@ -66,6 +75,9 @@ enum Frequency: string implements Unit
             self::Terahertz        => '1000000000000',
             self::ReciprocalSecond => '1',
             self::ReciprocalMinute => '0.016666666666666666',
+            self::BeatsPerMinute   => '0.01666666666666666',
+            self::ReciprocalDay    => '0.00001157407407407',
+            self::FailuresInTime   => '0.000000000000277778',
         };
     }
 

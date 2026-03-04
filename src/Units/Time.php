@@ -25,6 +25,8 @@ enum Time: string implements Unit
     case CommonYear   = 'L95';
     case SiderealYear = 'L96';
     case Shake        = 'M56';
+    case ThirtyDayMonth = 'M36';
+    case Actual360    = 'M37';
 
     public function code(): string
     {
@@ -49,7 +51,9 @@ enum Time: string implements Unit
             self::TropicalYear => 'y (tropical)',
             self::CommonYear   => 'y (365 days)',
             self::SiderealYear => 'y (sidereal)',
-            self::Shake        => 'shake',
+            self::Shake          => 'shake',
+            self::ThirtyDayMonth => 'mo (30 days)',
+            self::Actual360      => 'y (360 days)',
         };
     }
 
@@ -71,7 +75,9 @@ enum Time: string implements Unit
             self::TropicalYear => 'tropical year',
             self::CommonYear   => 'common year',
             self::SiderealYear => 'sidereal year',
-            self::Shake        => 'shake',
+            self::Shake          => 'shake',
+            self::ThirtyDayMonth => '30-day month',
+            self::Actual360      => 'actual/360',
         };
     }
 
@@ -101,7 +107,9 @@ enum Time: string implements Unit
             self::TropicalYear => '31556925',
             self::CommonYear   => '31536000',
             self::SiderealYear => '31558150',
-            self::Shake        => '0.00000001',
+            self::Shake          => '0.00000001',
+            self::ThirtyDayMonth => '2592000',
+            self::Actual360      => '31104000',
         };
     }
 
