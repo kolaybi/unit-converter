@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace KolayBi\UnitConverter\Tests\Unit;
 
 use KolayBi\UnitConverter\Converter;
+use KolayBi\UnitConverter\Enums\UnitCategory;
 use KolayBi\UnitConverter\Exceptions\NonConvertibleUnitException;
 use KolayBi\UnitConverter\Units\Counting;
 use KolayBi\UnitConverter\Units\MemoryCapacity;
+use KolayBi\UnitConverter\Units\SignalRate;
+use KolayBi\UnitConverter\Units\TextileDensity;
 use KolayBi\UnitConverter\Units\Voltage;
+use KolayBi\UnitConverter\Units\Wavenumber;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -268,6 +272,99 @@ final class Annex23UnitsTest extends TestCase
     {
         yield 'M36 (30-day month)' => ['M36', '30-day month', 2592000.0];
         yield 'M37 (actual/360)' => ['M37', 'actual/360', 31104000.0];
+    }
+
+    // ── Wavenumber: 4 new cases (new category) ──
+
+    #[DataProvider('wavenumberProvider')]
+    public function testWavenumberCasesResolveAndConvert(
+        string $code,
+        string $expectedLabel,
+        float $multiplierToBase,
+    ): void {
+        $unit = Converter::unit($code);
+
+        $this->assertInstanceOf(Wavenumber::class, $unit);
+        $this->assertSame($code, $unit->code());
+        $this->assertSame($expectedLabel, $unit->label());
+        $this->assertSame(UnitCategory::Wavenumber, $unit->category());
+
+        // Convert to dioptre (base unit, multiplier=1)
+        $result = Converter::convert(1)->from($code)->to('Q25');
+        $this->assertEqualsWithDelta($multiplierToBase, $result->toFloat(), 0.001);
+    }
+
+    /**
+     * @return iterable<string, array{string, string, float}>
+     */
+    public static function wavenumberProvider(): iterable
+    {
+        yield 'Q25 (dioptre)' => ['Q25', 'dioptre', 1.0];
+        yield 'E90 (reciprocal centimetre)' => ['E90', 'reciprocal centimetre', 100.0];
+        yield 'Q24 (reciprocal inch)' => ['Q24', 'reciprocal inch', 39.3700787];
+        yield 'TPI (teeth per inch)' => ['TPI', 'teeth per inch', 39.3700787];
+    }
+
+    // ── TextileDensity: 3 new cases (new category) ──
+
+    #[DataProvider('textileDensityProvider')]
+    public function testTextileDensityCasesResolveAndConvert(
+        string $code,
+        string $expectedLabel,
+    ): void {
+        $unit = Converter::unit($code);
+
+        $this->assertInstanceOf(TextileDensity::class, $unit);
+        $this->assertSame($code, $unit->code());
+        $this->assertSame($expectedLabel, $unit->label());
+        $this->assertSame(UnitCategory::TextileDensity, $unit->category());
+    }
+
+    /**
+     * @return iterable<string, array{string, string}>
+     */
+    public static function textileDensityProvider(): iterable
+    {
+        yield 'D34 (tex)' => ['D34', 'tex'];
+        yield 'A47 (decitex)' => ['A47', 'decitex'];
+        yield 'A49 (denier)' => ['A49', 'denier'];
+    }
+
+    public function testTexToDecitexConversion(): void
+    {
+        // 1 tex = 10 decitex
+        $result = Converter::convert(1)->from('D34')->to('A47');
+        $this->assertEqualsWithDelta(10.0, $result->toFloat(), 0.001);
+    }
+
+    // ── SignalRate: 3 new cases (new category) ──
+
+    #[DataProvider('signalRateProvider')]
+    public function testSignalRateCasesResolveAndConvert(
+        string $code,
+        string $expectedLabel,
+        float $multiplierToBase,
+    ): void {
+        $unit = Converter::unit($code);
+
+        $this->assertInstanceOf(SignalRate::class, $unit);
+        $this->assertSame($code, $unit->code());
+        $this->assertSame($expectedLabel, $unit->label());
+        $this->assertSame(UnitCategory::SignalRate, $unit->category());
+
+        // Convert to baud (base unit)
+        $result = Converter::convert(1)->from($code)->to('J38');
+        $this->assertEqualsWithDelta($multiplierToBase, $result->toFloat(), 0.001);
+    }
+
+    /**
+     * @return iterable<string, array{string, string, float}>
+     */
+    public static function signalRateProvider(): iterable
+    {
+        yield 'J38 (baud)' => ['J38', 'baud', 1.0];
+        yield 'K50 (kilobaud)' => ['K50', 'kilobaud', 1000.0];
+        yield 'J54 (megabaud)' => ['J54', 'megabaud', 1000000.0];
     }
 
     // ── Area: 1 new case ──

@@ -52,6 +52,8 @@ enum UnitCategory: string
     case MolarThermodynamicEnergy = 'molar_thermodynamic_energy';
     case MolarVolume = 'molar_volume';
     case Packaging = 'packaging';
+    case SignalRate = 'signal_rate';
+    case TextileDensity = 'textile_density';
     case Power = 'power';
     case Pressure = 'pressure';
     case Radioactivity = 'radioactivity';
@@ -63,6 +65,7 @@ enum UnitCategory: string
     case Torque = 'torque';
     case Voltage = 'voltage';
     case Volume = 'volume';
+    case Wavenumber = 'wavenumber';
 
     /**
      * @return class-string<Unit&UnitEnum>
@@ -112,6 +115,8 @@ enum UnitCategory: string
             self::MolarThermodynamicEnergy   => Units\MolarThermodynamicEnergy::class,
             self::MolarVolume                => Units\MolarVolume::class,
             self::Packaging                  => Units\Packaging::class,
+            self::SignalRate                  => Units\SignalRate::class,
+            self::TextileDensity             => Units\TextileDensity::class,
             self::Power                      => Units\Power::class,
             self::Pressure                   => Units\Pressure::class,
             self::Radioactivity              => Units\Radioactivity::class,
@@ -123,6 +128,7 @@ enum UnitCategory: string
             self::Torque                     => Units\Torque::class,
             self::Voltage                    => Units\Voltage::class,
             self::Volume                     => Units\Volume::class,
+            self::Wavenumber                 => Units\Wavenumber::class,
         };
     }
 
