@@ -36,6 +36,8 @@ enum Length: string implements Unit
     case Link                     = 'LK';
     case LinearMetre              = 'LM';
     case MileStatuteMile          = 'SMI';
+    case Picometre                = 'C52';
+    case Parsec                   = 'C63';
 
     public function code(): string
     {
@@ -72,6 +74,8 @@ enum Length: string implements Unit
             self::Link                     => 'lnk',
             self::LinearMetre              => 'lm',
             self::MileStatuteMile          => 'mile',
+            self::Picometre                => 'pm',
+            self::Parsec                   => 'pc',
         };
     }
 
@@ -105,6 +109,8 @@ enum Length: string implements Unit
             self::Link                     => 'link',
             self::LinearMetre              => 'linear metre',
             self::MileStatuteMile          => 'mile (statute mile)',
+            self::Picometre                => 'picometre',
+            self::Parsec                   => 'parsec',
         };
     }
 
@@ -152,6 +158,8 @@ enum Length: string implements Unit
             self::Link                     => '0.201168',
             self::LinearMetre              => '1',
             self::MileStatuteMile          => '1609.344',
+            self::Picometre                => '0.000000000001',
+            self::Parsec                   => '30856775814913700',
         };
     }
 
