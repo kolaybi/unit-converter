@@ -9,18 +9,18 @@ use KolayBi\UnitConverter\Enums\UnitCategory;
 
 enum Temperature: string implements Unit
 {
-    case Kelvin = 'KEL';
+    case Kelvin     = 'KEL';
     case Fahrenheit = 'FAH';
-    case Celsius = 'CEL';
-    case Rankine = 'A48';
+    case Celsius    = 'CEL';
+    case Rankine    = 'A48';
 
     public function symbol(): string
     {
         return match ($this) {
             self::Kelvin     => 'K',
-            self::Fahrenheit => '°F',
-            self::Celsius    => '°C',
-            self::Rankine    => '°R',
+            self::Fahrenheit => 'ºF',
+            self::Celsius    => 'ºC',
+            self::Rankine    => 'ºR',
         };
     }
 
