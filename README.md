@@ -37,13 +37,17 @@ echo $result->round(1); // "212.0"
 // Using labels
 $result = Converter::convert(1)->from('kilogram')->to('gram');
 echo $result->value; // "1000.00000000000000000000"
+
+// Default value is 1 — handy for conversion factors
+$result = Converter::convert()->from(Mass::Kilogram)->to(Mass::Pound);
+echo $result->round(6); // "2.204623"
 ```
 
 ## API
 
-### `Converter::convert(int|float|string $value): PendingConversion`
+### `Converter::convert(int|float|string $value = 1): PendingConversion`
 
-Entry point. Accepts any numeric value.
+Entry point. Accepts any numeric value. Defaults to `1`, useful for looking up conversion factors.
 
 ### `PendingConversion::from(Unit|string $unit): self`
 
@@ -86,34 +90,35 @@ $result->to;                 // Target Unit enum
 
 | Category                    | Units | Category                   | Units |
 |-----------------------------|-------|----------------------------|-------|
-| Absorbed Dose               | 4     | Illuminance                | 6     |
-| Absorbed Dose Rate          | 11    | Impulse                    | 6     |
-| Acceleration                | 11    | Inductance                 | 6     |
-| Amount of Substance         | 4     | Irradiance                 | 14    |
-| Angle                       | 9     | Kinematic Viscosity        | 7     |
-| Angular Impulse             | 2     | Length                     | 27    |
-| Angular Velocity            | 4     | Luminous Intensity         | 3     |
-| Area                        | 19    | Magnetic Flux              | 3     |
-| Capacitance                 | 7     | Magnetic Flux Density      | 6     |
-| Charge                      | 13    | Magnetic Vector Potential  | 3     |
-| Conductance                 | 7     | Mass                       | 29    |
-| Counting                    | 6     | Memory Capacity            | 12    |
-| Current                     | 9     | Molar Concentration        | 5     |
-| Data Rate                   | 12    | Molar Mass                 | 2     |
-| Density                     | 28    | Molar Thermodynamic Energy | 2     |
-| Dimensionless Concentration | 19    | Molar Volume               | 4     |
-| Dynamic Viscosity           | 19    | Packaging                  | 15    |
-| Effective Dose              | 4     | Power                      | 42    |
-| Effective Dose Rate         | 13    | Pressure                   | 42    |
-| Energy                      | 34    | Radioactivity              | 9     |
-| Energy Density              | 7     | Resistance                 | 8     |
-| Exposure                    | 2     | Specific Volume            | 7     |
-| Flow Rate                   | 88    | Speed                      | 23    |
-| Force                       | 15    | Temperature                | 4     |
-| Frequency                   | 7     | Time                       | 16    |
-|                             |       | Torque                     | 16    |
-|                             |       | Voltage                    | 6     |
-|                             |       | Volume                     | 66    |
+| Absorbed Dose               | 4     | Kinematic Viscosity        | 7     |
+| Absorbed Dose Rate          | 11    | Length                     | 27    |
+| Acceleration                | 11    | Luminous Intensity         | 3     |
+| Amount of Substance         | 4     | Magnetic Flux              | 3     |
+| Angle                       | 9     | Magnetic Flux Density      | 6     |
+| Angular Impulse             | 2     | Magnetic Vector Potential  | 3     |
+| Angular Velocity            | 4     | Mass                       | 29    |
+| Area                        | 19    | Memory Capacity            | 12    |
+| Capacitance                 | 7     | Molar Concentration        | 5     |
+| Charge                      | 13    | Molar Mass                 | 2     |
+| Conductance                 | 7     | Molar Thermodynamic Energy | 2     |
+| Counting                    | 6     | Molar Volume               | 4     |
+| Current                     | 9     | Packaging                  | 15    |
+| Data Rate                   | 12    | Power                      | 42    |
+| Density                     | 28    | Pressure                   | 42    |
+| Dimensionless Concentration | 19    | Radioactivity              | 9     |
+| Dynamic Viscosity           | 19    | Resistance                 | 8     |
+| Effective Dose              | 4     | Specific Volume            | 7     |
+| Effective Dose Rate         | 13    | Speed                      | 23    |
+| Energy                      | 34    | Temperature                | 4     |
+| Energy Density              | 7     | Time                       | 16    |
+| Exposure                    | 2     | Torque                     | 16    |
+| Flow Rate                   | 88    | Voltage                    | 6     |
+| Force                       | 15    | Volume                     | 66    |
+| Frequency                   | 7     | Volume                     | 66    |
+| Illuminance                 | 6     |                            |       |
+| Impulse                     | 6     |                            |       |
+| Inductance                  | 6     |                            |       |
+| Irradiance                  | 14    |                            |       |
 
 ## Unit Resolution
 

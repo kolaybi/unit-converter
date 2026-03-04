@@ -64,6 +64,7 @@ final class PendingConversion
         $enumClass = $category->enumClass();
         $results = [];
 
+        /** @var Unit $targetUnit */
         foreach ($enumClass::cases() as $targetUnit) {
             if ($targetUnit === $sourceUnit) {
                 continue;

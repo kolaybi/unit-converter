@@ -8,7 +8,7 @@ use KolayBi\UnitConverter\Contracts\Unit;
 
 final class Converter
 {
-    public static function convert(float|int|string $value): PendingConversion
+    public static function convert(float|int|string $value = 1): PendingConversion
     {
         return new PendingConversion($value);
     }
