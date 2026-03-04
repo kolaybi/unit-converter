@@ -3,12 +3,6 @@
     "description": "A PHP 8.4+ unit conversion package compatible with UN/CEFACT Recommendation 20",
     "type": "library",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "KolayBi",
-            "email": "dev@kolaybi.com"
-        }
-    ],
     "require": {
         "php": "^8.4",
         "ext-bcmath": "*"
@@ -27,6 +21,9 @@
         "psr-4": {
             "KolayBi\\UnitConverter\\Tests\\": "tests/"
         }
+    },
+    "scripts": {
+        "pint": "./vendor/bin/pint --dirty --parallel"
     },
     "minimum-stability": "stable",
     "prefer-stable": true

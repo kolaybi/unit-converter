@@ -114,8 +114,8 @@
     "get_class_to_class_keyword": true,
     "global_namespace_import": {
       "import_classes": true,
-      "import_constants": false,
-      "import_functions": false
+      "import_constants": true,
+      "import_functions": true
     },
     "heredoc_indentation": {
       "indentation": "start_plus_one"
