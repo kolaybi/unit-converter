@@ -58,10 +58,12 @@ final class UnitResolver
             }
 
             foreach ($enumClass::cases() as $unit) {
-                // Map by UN/CEFACT code (case-sensitive)
+                // Map by UN/CEFACT code (case-sensitive, last-writer-wins).
+                // Categories are ordered so PackageType (Rec 21) loads first,
+                // then Rec 20 categories overwrite any conflicting codes/aliases.
                 self::$map[$unit->code()] = $unit;
 
-                // Map by all aliases (case-insensitive)
+                // Map by all aliases (case-insensitive, last-writer-wins)
                 foreach ($unit->aliases() as $alias) {
                     self::$map[strtolower($alias)] = $unit;
                 }

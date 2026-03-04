@@ -217,6 +217,6 @@ final class ConverterTest extends TestCase
     {
         $this->expectException(UnitNotFoundException::class);
 
-        Converter::unit('xyz');
+        Converter::unit('not_a_real_unit');
     }
 }

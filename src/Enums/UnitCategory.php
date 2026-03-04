@@ -10,6 +10,11 @@ use UnitEnum;
 
 enum UnitCategory: string
 {
+    // PackageType (Rec 21) is listed first so its aliases are loaded first.
+    // All subsequent categories (Rec 20) override any conflicting codes,
+    // ensuring physical unit symbols (e.g., 'lt' → Litre) take priority
+    // over Rec 21 native aliases (e.g., 'LT' → Lot).
+    case PackageType = 'package_type';
     case AbsorbedDose = 'absorbed_dose';
     case AbsorbedDoseRate = 'absorbed_dose_rate';
     case Acceleration = 'acceleration';
@@ -74,6 +79,7 @@ enum UnitCategory: string
     public function enumClass(): string
     {
         return match ($this) {
+            self::PackageType                 => Units\PackageType::class,
             self::AbsorbedDose                => Units\AbsorbedDose::class,
             self::AbsorbedDoseRate            => Units\AbsorbedDoseRate::class,
             self::Acceleration                => Units\Acceleration::class,
@@ -136,6 +142,6 @@ enum UnitCategory: string
 
     public function isConvertible(): bool
     {
-        return !in_array($this, [self::Packaging, self::Trade], true);
+        return !in_array($this, [self::Packaging, self::PackageType, self::Trade], true);
     }
 }
