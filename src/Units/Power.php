@@ -51,6 +51,8 @@ enum Power: string implements Unit
     case KilojoulePerMinute                                 = 'P19';
     case KilojoulePerHour                                   = 'P20';
     case KilojoulePerDay                                    = 'P21';
+    case KilowattPeak                                       = 'XKP';
+    case MegawattPeak                                       = 'XMP';
 
     public function code(): string
     {
@@ -102,6 +104,8 @@ enum Power: string implements Unit
             self::KilojoulePerMinute                                 => 'kJ/min',
             self::KilojoulePerHour                                   => 'kJ/h',
             self::KilojoulePerDay                                    => 'kJ/d',
+            self::KilowattPeak                                       => 'kWp',
+            self::MegawattPeak                                       => 'MWp',
         };
     }
 
@@ -150,6 +154,8 @@ enum Power: string implements Unit
             self::KilojoulePerMinute                                 => 'kilojoule per minute',
             self::KilojoulePerHour                                   => 'kilojoule per hour',
             self::KilojoulePerDay                                    => 'kilojoule per day',
+            self::KilowattPeak                                       => 'kilowatt peak',
+            self::MegawattPeak                                       => 'megawatt peak',
         };
     }
 
@@ -206,6 +212,8 @@ enum Power: string implements Unit
             self::KilojoulePerMinute                                 => '16.6666666667',
             self::KilojoulePerHour                                   => '0.2777777778',
             self::KilojoulePerDay                                    => '0.01157407407',
+            self::KilowattPeak                                       => '1000',
+            self::MegawattPeak                                       => '1000000',
         };
     }
 
