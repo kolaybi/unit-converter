@@ -7,6 +7,7 @@ namespace KolayBi\UnitConverter\Tests\Unit;
 use KolayBi\UnitConverter\ConversionResult;
 use KolayBi\UnitConverter\Converter;
 use KolayBi\UnitConverter\Exceptions\IncompatibleUnitsException;
+use KolayBi\UnitConverter\Exceptions\UnitNotFoundException;
 use KolayBi\UnitConverter\PendingConversion;
 use KolayBi\UnitConverter\Units\Mass;
 use KolayBi\UnitConverter\Units\Temperature;
@@ -185,5 +186,37 @@ final class ConverterTest extends TestCase
         $rounded = $result->round(2);
 
         $this->assertSame('2.20', $rounded);
+    }
+
+    // --- unit() ---
+
+    public function testUnitResolvesFromSymbol(): void
+    {
+        $unit = Converter::unit('kg');
+
+        $this->assertSame(Mass::Kilogram, $unit);
+        $this->assertSame('KGM', $unit->code());
+    }
+
+    public function testUnitResolvesFromCode(): void
+    {
+        $unit = Converter::unit('KGM');
+
+        $this->assertSame(Mass::Kilogram, $unit);
+        $this->assertSame('kg', $unit->symbol());
+    }
+
+    public function testUnitResolvesFromLabel(): void
+    {
+        $unit = Converter::unit('kilogram');
+
+        $this->assertSame(Mass::Kilogram, $unit);
+    }
+
+    public function testUnitThrowsForUnknownInput(): void
+    {
+        $this->expectException(UnitNotFoundException::class);
+
+        Converter::unit('xyz');
     }
 }
