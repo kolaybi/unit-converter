@@ -7,20 +7,25 @@ namespace KolayBi\UnitConverter;
 use KolayBi\UnitConverter\Contracts\Unit;
 use KolayBi\UnitConverter\Exceptions\IncompatibleUnitsException;
 use KolayBi\UnitConverter\Exceptions\NonConvertibleUnitException;
+use LogicException;
 
 final class PendingConversion
 {
     private const int DEFAULT_SCALE = 20;
 
+    /** @var numeric-string */
     private string $value;
 
     private ?Unit $sourceUnit = null;
 
+    /** @var numeric-string|null */
     private ?string $baseValue = null;
 
     public function __construct(float|int|string $value)
     {
-        $this->value = (string) $value;
+        /** @var numeric-string $numericValue */
+        $numericValue = (string) $value;
+        $this->value = $numericValue;
     }
 
     public function from(string|Unit $unit): self
@@ -35,13 +40,16 @@ final class PendingConversion
 
     public function to(string|Unit $unit): ConversionResult
     {
+        $sourceUnit = $this->sourceUnit ?? throw new LogicException('Call from() before to().');
+        $baseValue = $this->baseValue ?? throw new LogicException('Call from() before to().');
+
         $unit = $this->resolveUnit($unit);
         $this->guardConvertible($unit);
-        $this->guardCompatible($unit);
+        $this->guardCompatible($sourceUnit, $unit);
 
-        $result = $this->fromBase($this->baseValue, $unit);
+        $result = $this->fromBase($baseValue, $unit);
 
-        return new ConversionResult($result, $this->sourceUnit, $unit);
+        return new ConversionResult($result, $sourceUnit, $unit);
     }
 
     /**
@@ -49,33 +57,48 @@ final class PendingConversion
      */
     public function toAll(): array
     {
-        $category = $this->sourceUnit->category();
+        $sourceUnit = $this->sourceUnit ?? throw new LogicException('Call from() before toAll().');
+        $baseValue = $this->baseValue ?? throw new LogicException('Call from() before toAll().');
+
+        $category = $sourceUnit->category();
         $enumClass = $category->enumClass();
         $results = [];
 
         foreach ($enumClass::cases() as $targetUnit) {
-            if ($targetUnit === $this->sourceUnit) {
+            if ($targetUnit === $sourceUnit) {
                 continue;
             }
-            $results[$targetUnit->value] = $this->fromBase($this->baseValue, $targetUnit);
+            $results[$targetUnit->code()] = $this->fromBase($baseValue, $targetUnit);
         }
 
         return $results;
     }
 
+    /**
+     * @param numeric-string $value
+     *
+     * @return numeric-string
+     */
     private function toBase(string $value, Unit $unit): string
     {
         // base = value * multiplier + offset
         $multiplied = bcmul($value, $unit->multiplier(), self::DEFAULT_SCALE);
 
+        /** @var numeric-string */
         return bcadd($multiplied, $unit->offset(), self::DEFAULT_SCALE);
     }
 
+    /**
+     * @param numeric-string $baseValue
+     *
+     * @return numeric-string
+     */
     private function fromBase(string $baseValue, Unit $unit): string
     {
         // value = (base - offset) / multiplier
         $subtracted = bcsub($baseValue, $unit->offset(), self::DEFAULT_SCALE);
 
+        /** @var numeric-string */
         return bcdiv($subtracted, $unit->multiplier(), self::DEFAULT_SCALE);
     }
 
@@ -91,16 +114,16 @@ final class PendingConversion
     private function guardConvertible(Unit $unit): void
     {
         if (!$unit->category()->isConvertible()) {
-            throw new NonConvertibleUnitException($unit->value);
+            throw new NonConvertibleUnitException($unit->code());
         }
     }
 
-    private function guardCompatible(Unit $unit): void
+    private function guardCompatible(Unit $sourceUnit, Unit $targetUnit): void
     {
-        if ($this->sourceUnit->category() !== $unit->category()) {
+        if ($sourceUnit->category() !== $targetUnit->category()) {
             throw new IncompatibleUnitsException(
-                $this->sourceUnit->category()->value,
-                $unit->category()->value,
+                $sourceUnit->category()->value,
+                $targetUnit->category()->value,
             );
         }
     }

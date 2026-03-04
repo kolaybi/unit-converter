@@ -16,6 +16,11 @@ enum Voltage: string implements Unit
     case Microvolt = 'D82';
     case Kilovolt  = 'KVT';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

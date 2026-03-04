@@ -14,6 +14,11 @@ enum AngularVelocity: string implements Unit
     case RevolutionsPerMinute_RPM = 'RPM';
     case RevolutionsPerSecond     = 'RPS';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

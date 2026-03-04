@@ -33,6 +33,11 @@ enum Speed: string implements Unit
     case YardPerMinute        = 'M65';
     case YardPerHour          = 'M66';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

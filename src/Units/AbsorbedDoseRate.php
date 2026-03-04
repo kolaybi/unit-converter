@@ -21,6 +21,11 @@ enum AbsorbedDoseRate: string implements Unit
     case MicrograyPerHour   = 'P63';
     case NanograyPerHour    = 'P64';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

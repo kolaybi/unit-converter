@@ -19,6 +19,11 @@ enum Angle: string implements Unit
     case Mil         = 'M43';
     case Revolution  = 'M44';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

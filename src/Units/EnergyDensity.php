@@ -17,6 +17,11 @@ enum EnergyDensity: string implements Unit
     case BritishThermalUnitThermochemicalPerCubicFoot     = 'N59';
     case CaloriePerCubicCentimetre                        = '92';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

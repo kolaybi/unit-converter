@@ -23,6 +23,11 @@ enum Charge: string implements Unit
     case AmpereMinute                     = 'N95';
     case Franklin                         = 'N94';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

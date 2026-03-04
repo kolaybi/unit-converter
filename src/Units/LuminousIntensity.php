@@ -13,6 +13,11 @@ enum LuminousIntensity: string implements Unit
     case Kilocandela  = 'P33';
     case Millicandela = 'P34';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

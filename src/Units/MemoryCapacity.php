@@ -22,6 +22,11 @@ enum MemoryCapacity: string implements Unit
     case Pebibyte = 'E60';
     case Exbibyte = 'E59';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

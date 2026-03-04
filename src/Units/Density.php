@@ -38,6 +38,11 @@ enum Density: string implements Unit
     case TonUKLongPerCubicYard        = 'L92';
     case TonUSShortPerCubicYard       = 'L93';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

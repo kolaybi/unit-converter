@@ -29,6 +29,11 @@ enum DynamicViscosity: string implements Unit
     case PoundPerFootMinute            = 'N43';
     case PoundPerFootDay               = 'N44';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

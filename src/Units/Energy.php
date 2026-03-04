@@ -44,6 +44,11 @@ enum Energy: string implements Unit
     case ThermUS                              = 'N72';
     case WattSecond                           = 'J55';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

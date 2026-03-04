@@ -39,6 +39,11 @@ enum Mass: string implements Unit
     case PoundNet                       = 'PN';
     case Pennyweight                    = 'DWT';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

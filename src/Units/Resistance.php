@@ -18,6 +18,11 @@ enum Resistance: string implements Unit
     case Microohm = 'B94';
     case Nanoohm  = 'P22';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

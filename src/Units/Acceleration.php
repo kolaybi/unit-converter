@@ -21,6 +21,11 @@ enum Acceleration: string implements Unit
     case YardPerSecondSquared            = 'M40';
     case MileStatuteMilePerSecondSquared = 'M42';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

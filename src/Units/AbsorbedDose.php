@@ -14,6 +14,11 @@ enum AbsorbedDose: string implements Unit
     case Rad        = 'C80';
     case ErgPerGram = 'A61';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

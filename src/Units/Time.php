@@ -26,6 +26,11 @@ enum Time: string implements Unit
     case SiderealYear = 'L96';
     case Shake        = 'M56';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

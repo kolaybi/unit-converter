@@ -8,6 +8,11 @@ use KolayBi\UnitConverter\Enums\UnitCategory;
 
 interface Unit
 {
+    /**
+     * The UN/CEFACT Recommendation 20 code.
+     */
+    public function code(): string;
+
     public function symbol(): string;
 
     public function label(): string;
@@ -17,8 +22,14 @@ interface Unit
      */
     public function aliases(): array;
 
+    /**
+     * @return numeric-string
+     */
     public function multiplier(): string;
 
+    /**
+     * @return numeric-string
+     */
     public function offset(): string;
 
     public function category(): UnitCategory;

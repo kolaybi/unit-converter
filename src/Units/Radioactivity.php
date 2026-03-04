@@ -19,6 +19,11 @@ enum Radioactivity: string implements Unit
     case Megabecquerel  = '4N';
     case Microbecquerel = 'H08';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

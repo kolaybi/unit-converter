@@ -17,6 +17,11 @@ enum SpecificVolume: string implements Unit
     case CubicFootPerPound         = 'N29';
     case CubicInchPerPound         = 'N30';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

@@ -29,6 +29,11 @@ enum Area: string implements Unit
     case CircularMil                   = 'M47';
     case BaseBox                       = 'BB';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

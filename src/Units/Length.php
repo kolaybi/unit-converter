@@ -37,6 +37,11 @@ enum Length: string implements Unit
     case LinearMetre              = 'LM';
     case MileStatuteMile          = 'SMI';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

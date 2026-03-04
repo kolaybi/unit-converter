@@ -25,6 +25,11 @@ enum Packaging: string implements Unit
     case Sack = 'SA';
     case Person = 'IE';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return $this->value;

@@ -13,6 +13,11 @@ enum MagneticFlux: string implements Unit
     case Milliweber = 'C33';
     case Kiloweber  = 'P11';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

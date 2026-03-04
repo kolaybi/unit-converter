@@ -16,6 +16,11 @@ enum MagneticFluxDensity: string implements Unit
     case Kilotesla  = 'P13';
     case Gamma      = 'P12';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

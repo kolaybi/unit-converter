@@ -16,6 +16,11 @@ enum Illuminance: string implements Unit
     case Phot                = 'P26';
     case Footcandle          = 'P27';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

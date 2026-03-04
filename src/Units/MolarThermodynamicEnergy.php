@@ -12,6 +12,11 @@ enum MolarThermodynamicEnergy: string implements Unit
     case JoulePerMole     = 'B15';
     case KilojoulePerMole = 'B44';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

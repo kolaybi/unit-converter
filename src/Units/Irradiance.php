@@ -24,6 +24,11 @@ enum Irradiance: string implements Unit
     case CalorieThermochemicalPerSquareCentimetreMinute          = 'N56';
     case CalorieThermochemicalPerSquareCentimetreSecond          = 'N57';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

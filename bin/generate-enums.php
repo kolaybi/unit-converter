@@ -323,6 +323,13 @@ function generateEnum(string $enumName, string $categoryCase, array $cases): str
         $lines[] = "    case {$padded} = '{$case['rec20']}';";
     }
 
+    // code()
+    $lines[] = '';
+    $lines[] = '    public function code(): string';
+    $lines[] = '    {';
+    $lines[] = '        return $this->value;';
+    $lines[] = '    }';
+
     // symbol()
     $lines[] = '';
     $lines[] = '    public function symbol(): string';

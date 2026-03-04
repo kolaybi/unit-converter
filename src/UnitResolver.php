@@ -59,7 +59,7 @@ final class UnitResolver
 
             foreach ($enumClass::cases() as $unit) {
                 // Map by UN/CEFACT code (case-sensitive)
-                self::$map[$unit->value] = $unit;
+                self::$map[$unit->code()] = $unit;
 
                 // Map by all aliases (case-insensitive)
                 foreach ($unit->aliases() as $alias) {

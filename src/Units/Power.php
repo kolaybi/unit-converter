@@ -52,6 +52,11 @@ enum Power: string implements Unit
     case KilojoulePerHour                                   = 'P20';
     case KilojoulePerDay                                    = 'P21';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {

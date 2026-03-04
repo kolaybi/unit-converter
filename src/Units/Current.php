@@ -19,6 +19,11 @@ enum Current: string implements Unit
     case Biot        = 'N96';
     case Gilbert     = 'N97';
 
+    public function code(): string
+    {
+        return $this->value;
+    }
+
     public function symbol(): string
     {
         return match ($this) {
