@@ -64,7 +64,7 @@ enum Capacitance: string implements Unit
             self::Millifarad => '0.001',
             self::Microfarad => '0.000001',
             self::Nanofarad  => '0.000000001',
-            self::Picofarad  => '0.000000001',
+            self::Picofarad  => '0.000000000001',
             self::Kilofarad  => '1000',
         };
     }

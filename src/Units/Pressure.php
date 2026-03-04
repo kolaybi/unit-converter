@@ -181,8 +181,8 @@ enum Pressure: string implements Unit
             self::PoundPerSquareInchAbsolute       => '6897.112776',
             self::ConventionalCentimetreOfWater    => '98.0665',
             self::ConventionalMillimetreOfWater    => '9.80665',
-            self::InchOfMercury                    => '33220.4859',
-            self::InchOfWater                      => '2443.56309',
+            self::InchOfMercury                    => '3386.389',
+            self::InchOfWater                      => '249.089',
             self::TechnicalAtmosphere              => '98066.5',
             self::StandardAtmosphere               => '101325',
             self::CentimetresOfMercury             => '1333.224',
@@ -204,7 +204,7 @@ enum Pressure: string implements Unit
             self::PoundalPerSquareFoot             => '1.488164',
             self::OunceAvoirdupoisPerSquareInch    => '431.0695485',
             self::ConventionalMetreOfWater         => '9806.65',
-            self::MillimetresOfMercury             => '13332.24',
+            self::MillimetresOfMercury             => '133.3224',
             self::PoundForcePerSquareInch          => '6894.757',
         };
     }
