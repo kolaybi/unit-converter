@@ -10,9 +10,9 @@ use KolayBi\UnitConverter\Exceptions\NonConvertibleUnitException;
 use KolayBi\UnitConverter\Units\Counting;
 use KolayBi\UnitConverter\Units\MemoryCapacity;
 use KolayBi\UnitConverter\Units\Packaging;
-use KolayBi\UnitConverter\Units\Trade;
 use KolayBi\UnitConverter\Units\SignalRate;
 use KolayBi\UnitConverter\Units\TextileDensity;
+use KolayBi\UnitConverter\Units\Trade;
 use KolayBi\UnitConverter\Units\Voltage;
 use KolayBi\UnitConverter\Units\Wavenumber;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -492,6 +492,6 @@ final class Annex23UnitsTest extends TestCase
 
     public function testTradeTotalCaseCount(): void
     {
-        $this->assertSame(988, count(Trade::cases()));
+        $this->assertCount(988, Trade::cases());
     }
 }

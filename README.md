@@ -1,6 +1,6 @@
 # Unit Converter
 
-A PHP 8.4+ framework-agnostic package for converting between 743 units of measurement based on [UN/CEFACT Recommendation 20](https://unece.org/trade/uncefact/cl-recommendations) and the [GS1 unit conversion model](https://www.gs1.org/).
+A PHP 8.4+ framework-agnostic package for converting between 1,804 units of measurement based on [UN/CEFACT Recommendation 20](https://unece.org/trade/uncefact/cl-recommendations) and the [GS1 unit conversion model](https://www.gs1.org/).
 
 Uses arbitrary-precision math (bcmath) with the GS1 multiplier + offset formula to handle both linear conversions (mass, length, volume, etc.) and non-linear ones (temperature).
 
@@ -86,39 +86,41 @@ $result->to;                 // Target Unit enum
 
 ## Unit Categories
 
-53 categories covering 743 units:
+57 categories covering 1,804 units (816 convertible + 988 non-convertible):
 
 | Category                    | Units | Category                   | Units |
 |-----------------------------|-------|----------------------------|-------|
 | Absorbed Dose               | 4     | Kinematic Viscosity        | 7     |
-| Absorbed Dose Rate          | 11    | Length                     | 27    |
+| Absorbed Dose Rate          | 11    | Length                     | 32    |
 | Acceleration                | 11    | Luminous Intensity         | 3     |
 | Amount of Substance         | 4     | Magnetic Flux              | 3     |
 | Angle                       | 9     | Magnetic Flux Density      | 6     |
 | Angular Impulse             | 2     | Magnetic Vector Potential  | 3     |
-| Angular Velocity            | 4     | Mass                       | 29    |
-| Area                        | 19    | Memory Capacity            | 12    |
+| Angular Velocity            | 4     | Mass                       | 34    |
+| Area                        | 20    | Memory Capacity            | 15    |
 | Capacitance                 | 7     | Molar Concentration        | 5     |
 | Charge                      | 13    | Molar Mass                 | 2     |
 | Conductance                 | 7     | Molar Thermodynamic Energy | 2     |
-| Counting                    | 6     | Molar Volume               | 4     |
-| Current                     | 9     | Packaging                  | 15    |
+| Counting                    | 14    | Molar Volume               | 4     |
+| Current                     | 9     | Packaging ⊘                | 46    |
 | Data Rate                   | 12    | Power                      | 42    |
 | Density                     | 28    | Pressure                   | 42    |
-| Dimensionless Concentration | 19    | Radioactivity              | 9     |
+| Dimensionless Concentration | 24    | Radioactivity              | 9     |
 | Dynamic Viscosity           | 19    | Resistance                 | 8     |
-| Effective Dose              | 4     | Specific Volume            | 7     |
-| Effective Dose Rate         | 13    | Speed                      | 23    |
-| Energy                      | 34    | Temperature                | 4     |
-| Energy Density              | 7     | Time                       | 16    |
-| Exposure                    | 2     | Torque                     | 16    |
-| Flow Rate                   | 88    | Voltage                    | 6     |
-| Force                       | 15    | Volume                     | 66    |
-| Frequency                   | 7     | Volume                     | 66    |
-| Illuminance                 | 6     |                            |       |
-| Impulse                     | 6     |                            |       |
-| Inductance                  | 6     |                            |       |
+| Effective Dose              | 4     | Signal Rate                | 3     |
+| Effective Dose Rate         | 13    | Specific Volume            | 7     |
+| Energy                      | 34    | Speed                      | 23    |
+| Energy Density              | 7     | Temperature                | 4     |
+| Exposure                    | 2     | Textile Density            | 3     |
+| Flow Rate                   | 88    | Time                       | 18    |
+| Force                       | 15    | Torque                     | 16    |
+| Frequency                   | 10    | Trade ⊘                    | 988   |
+| Illuminance                 | 6     | Voltage                    | 6     |
+| Impulse                     | 6     | Volume                     | 66    |
+| Inductance                  | 6     | Wavenumber                 | 4     |
 | Irradiance                  | 14    |                            |       |
+
+⊘ = non-convertible (code resolution only)
 
 ## Unit Resolution
 
@@ -172,7 +174,7 @@ All math uses `bcmath` with a scale of 20 decimal places.
 
 ## Code Generation
 
-The 51 convertible unit enums are generated from the GS1 datatable:
+The convertible unit enums are generated from the GS1 datatable:
 
 ```bash
 php bin/generate-enums.php [path-to-json]

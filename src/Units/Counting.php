@@ -76,7 +76,7 @@ enum Counting: string implements Unit
     {
         $aliases = [$this->value, $this->symbol(), $this->label()];
 
-        if ($this === self::Each) {
+        if (self::Each === $this) {
             $aliases[] = 'EA';
             $aliases[] = 'H87';
             $aliases[] = 'NAR';

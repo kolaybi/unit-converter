@@ -52,7 +52,7 @@ enum Voltage: string implements Unit
     {
         $aliases = [$this->value, $this->symbol(), $this->label()];
 
-        if ($this === self::Volt) {
+        if (self::Volt === $this) {
             $aliases[] = '2G';
             $aliases[] = '2H';
         }

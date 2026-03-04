@@ -45,9 +45,9 @@ enum MemoryCapacity: string implements Unit
             self::Tebibyte => 'Tibyte',
             self::Pebibyte => 'Pibyte',
             self::Exbibyte => 'Eibyte',
-            self::Bit     => 'bit',
-            self::Kilobit => 'kbit',
-            self::Gigabit => 'Gbit',
+            self::Bit      => 'bit',
+            self::Kilobit  => 'kbit',
+            self::Gigabit  => 'Gbit',
         };
     }
 
@@ -66,9 +66,9 @@ enum MemoryCapacity: string implements Unit
             self::Tebibyte => 'tebibyte',
             self::Pebibyte => 'pebibyte',
             self::Exbibyte => 'exbibyte',
-            self::Bit     => 'bit',
-            self::Kilobit => 'kilobit',
-            self::Gigabit => 'gigabit',
+            self::Bit      => 'bit',
+            self::Kilobit  => 'kilobit',
+            self::Gigabit  => 'gigabit',
         };
     }
 
@@ -95,9 +95,9 @@ enum MemoryCapacity: string implements Unit
             self::Tebibyte => '1099511627776',
             self::Pebibyte => '1125899906842624',
             self::Exbibyte => '1152921504606847000',
-            self::Bit     => '0.125',
-            self::Kilobit => '125',
-            self::Gigabit => '125000000',
+            self::Bit      => '0.125',
+            self::Kilobit  => '125',
+            self::Gigabit  => '125000000',
         };
     }
 
