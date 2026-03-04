@@ -54,6 +54,7 @@ enum UnitCategory: string
     case Packaging = 'packaging';
     case SignalRate = 'signal_rate';
     case TextileDensity = 'textile_density';
+    case Trade = 'trade';
     case Power = 'power';
     case Pressure = 'pressure';
     case Radioactivity = 'radioactivity';
@@ -117,6 +118,7 @@ enum UnitCategory: string
             self::Packaging                  => Units\Packaging::class,
             self::SignalRate                  => Units\SignalRate::class,
             self::TextileDensity             => Units\TextileDensity::class,
+            self::Trade                      => Units\Trade::class,
             self::Power                      => Units\Power::class,
             self::Pressure                   => Units\Pressure::class,
             self::Radioactivity              => Units\Radioactivity::class,
@@ -134,6 +136,6 @@ enum UnitCategory: string
 
     public function isConvertible(): bool
     {
-        return self::Packaging !== $this;
+        return !in_array($this, [self::Packaging, self::Trade], true);
     }
 }

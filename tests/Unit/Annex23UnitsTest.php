@@ -10,6 +10,7 @@ use KolayBi\UnitConverter\Exceptions\NonConvertibleUnitException;
 use KolayBi\UnitConverter\Units\Counting;
 use KolayBi\UnitConverter\Units\MemoryCapacity;
 use KolayBi\UnitConverter\Units\Packaging;
+use KolayBi\UnitConverter\Units\Trade;
 use KolayBi\UnitConverter\Units\SignalRate;
 use KolayBi\UnitConverter\Units\TextileDensity;
 use KolayBi\UnitConverter\Units\Voltage;
@@ -438,5 +439,59 @@ final class Annex23UnitsTest extends TestCase
         yield 'SX' => ['SX'];
         yield 'SYR' => ['SYR'];
         yield 'Z11' => ['Z11'];
+    }
+
+    // ── Trade: non-convertible cases (sample) ──
+
+    #[DataProvider('tradeSampleProvider')]
+    public function testTradeUnitsResolve(string $code, string $expectedLabel): void
+    {
+        $unit = Converter::unit($code);
+
+        $this->assertInstanceOf(Trade::class, $unit);
+        $this->assertSame($code, $unit->code());
+        $this->assertSame($expectedLabel, $unit->label());
+        $this->assertSame(UnitCategory::Trade, $unit->category());
+        $this->assertFalse($unit->category()->isConvertible());
+    }
+
+    #[DataProvider('tradeSampleProvider')]
+    public function testTradeUnitsThrowOnConversion(string $code, string $expectedLabel): void
+    {
+        $this->expectException(NonConvertibleUnitException::class);
+
+        Converter::convert(1)->from($code)->to('KGM');
+    }
+
+    /**
+     * @return iterable<string, array{string, string}>
+     */
+    public static function tradeSampleProvider(): iterable
+    {
+        yield 'KNI (kg nitrogen)' => ['KNI', 'kilogram of nitrogen'];
+        yield '10 (group)' => ['10', 'group'];
+        yield '20 (twenty foot container)' => ['20', 'twenty foot container'];
+        yield 'ACT (activity)' => ['ACT', 'activity'];
+        yield 'E27 (dose)' => ['E27', 'dose'];
+        yield 'E54 (trip)' => ['E54', 'trip'];
+        yield 'KCC (kg choline chloride)' => ['KCC', 'kilogram of choline chloride'];
+        yield 'KWY (kilowatt year)' => ['KWY', 'kilowatt year'];
+        yield 'NMP (number of packs)' => ['NMP', 'number of packs'];
+        yield 'A29 (coulomb/m³)' => ['A29', 'coulomb per cubic metre'];
+        yield 'B27 (kilocoulomb/m³)' => ['B27', 'kilocoulomb per cubic metre'];
+        yield 'D27 (steradian)' => ['D27', 'steradian'];
+        yield 'H07 (pascal second per bar)' => ['H07', 'pascal second per bar'];
+        yield 'M94 (kilogram metre)' => ['M94', 'kilogram metre'];
+        yield 'ZZ (mutually defined)' => ['ZZ', 'mutually defined'];
+    }
+
+    public function testTradeCategoryIsNotConvertible(): void
+    {
+        $this->assertFalse(UnitCategory::Trade->isConvertible());
+    }
+
+    public function testTradeTotalCaseCount(): void
+    {
+        $this->assertSame(988, count(Trade::cases()));
     }
 }
