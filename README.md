@@ -1,6 +1,6 @@
 # Unit Converter
 
-A PHP 8.4+ framework-agnostic package for converting between 1,810 units of measurement based on [UN/CEFACT Recommendation 20](https://unece.org/trade/uncefact/cl-recommendations) and the [GS1 unit conversion model](https://www.gs1.org/).
+A PHP 8.4+ framework-agnostic package for converting between 2,216 units of measurement based on [UN/CEFACT Recommendation 20](https://unece.org/trade/uncefact/cl-recommendations), [Recommendation 21](https://unece.org/trade/uncefact/cl-recommendations) (package types), and the [GS1 unit conversion model](https://www.gs1.org/).
 
 Uses arbitrary-precision math (bcmath) with the GS1 multiplier + offset formula to handle both linear conversions (mass, length, volume, etc.) and non-linear ones (temperature).
 
@@ -86,7 +86,7 @@ $result->to;                 // Target Unit enum
 
 ## Unit Categories
 
-57 categories covering 1,810 units (780 convertible + 1,030 non-convertible):
+58 categories covering 2,216 units (780 convertible + 1,436 non-convertible):
 
 | Category                    | Units | Category                   | Units |
 |-----------------------------|-------|----------------------------|-------|
@@ -102,25 +102,50 @@ $result->to;                 // Target Unit enum
 | Charge                      | 13    | Molar Mass                 | 2     |
 | Conductance                 | 7     | Molar Thermodynamic Energy | 2     |
 | Counting                    | 14    | Molar Volume               | 4     |
-| Current                     | 9     | Packaging ⊘                | 52    |
-| Data Rate                   | 12    | Power                      | 44    |
-| Density                     | 28    | Pressure                   | 42    |
-| Dimensionless Concentration | 24    | Radioactivity              | 9     |
-| Dynamic Viscosity           | 19    | Resistance                 | 8     |
-| Effective Dose              | 4     | Signal Rate                | 3     |
-| Effective Dose Rate         | 13    | Specific Volume            | 7     |
-| Energy                      | 34    | Speed                      | 23    |
-| Energy Density              | 7     | Temperature                | 4     |
-| Exposure                    | 2     | Textile Density            | 3     |
-| Flow Rate                   | 93    | Time                       | 18    |
-| Force                       | 15    | Torque                     | 16    |
-| Frequency                   | 10    | Trade ⊘                    | 978   |
-| Illuminance                 | 6     | Voltage                    | 6     |
-| Impulse                     | 6     | Volume                     | 66    |
-| Inductance                  | 6     | Wavenumber                 | 4     |
-| Irradiance                  | 14    |                            |       |
+| Current                     | 9     | Package Type ⊘             | 406   |
+| Data Rate                   | 12    | Packaging ⊘                | 52    |
+| Density                     | 28    | Power                      | 44    |
+| Dimensionless Concentration | 24    | Pressure                   | 42    |
+| Dynamic Viscosity           | 19    | Radioactivity              | 9     |
+| Effective Dose              | 4     | Resistance                 | 8     |
+| Effective Dose Rate         | 13    | Signal Rate                | 3     |
+| Energy                      | 34    | Specific Volume            | 7     |
+| Energy Density              | 7     | Speed                      | 23    |
+| Exposure                    | 2     | Temperature                | 4     |
+| Flow Rate                   | 93    | Textile Density            | 3     |
+| Force                       | 15    | Time                       | 18    |
+| Frequency                   | 10    | Torque                     | 16    |
+| Illuminance                 | 6     | Trade ⊘                    | 978   |
+| Impulse                     | 6     | Voltage                    | 6     |
+| Inductance                  | 6     | Volume                     | 66    |
+| Irradiance                  | 14    | Wavenumber                 | 4     |
 
 ⊘ = non-convertible (code resolution only)
+
+## Package Types (Rec 21)
+
+406 package types from [UNECE Recommendation 21](https://unece.org/trade/uncefact/cl-recommendations) (Rev. 12) are available via the `PackageType` enum.
+
+Per Rec 20 guidance, each 2-character Rec 21 code is prefixed with `X` to form a 3-character unit-of-measure code (reserved range `X00`–`XZZ`). The native Rec 21 code is also available as an alias.
+
+```php
+use KolayBi\UnitConverter\Converter;
+use KolayBi\UnitConverter\Units\PackageType;
+
+// Using X-prefixed code
+$unit = Converter::unit('XBG');  // PackageType::Bag
+$unit->code();                   // 'XBG'
+$unit->rec21Code();              // 'BG'
+$unit->label();                  // 'bag'
+
+// Using label
+$unit = Converter::unit('aerosol'); // PackageType::Aerosol (code: XAE)
+
+// Using enum case directly
+$unit = PackageType::DrumSteel;     // code: X1A
+```
+
+> **Resolution priority:** When a Rec 21 native code conflicts with a Rec 20 code (23 shared codes like `BG`, `DR`, `TU`), Rec 20 takes priority. Use the X-prefixed code to explicitly target the Rec 21 entry.
 
 ## Unit Resolution
 
@@ -155,7 +180,7 @@ Converter::convert(1)->from(Packaging::Box)->to(Packaging::Bag);
 // throws NonConvertibleUnitException
 
 // Unknown unit string
-Converter::convert(1)->from('xyz')->to('abc');
+Converter::convert(1)->from('not_a_real_unit')->to('abc');
 // throws UnitNotFoundException
 ```
 
