@@ -7,8 +7,6 @@ namespace KolayBi\UnitConverter;
 use KolayBi\UnitConverter\Contracts\Unit;
 use Stringable;
 
-use const PHP_ROUND_HALF_UP;
-
 final readonly class ConversionResult implements Stringable
 {
     public function __construct(
@@ -22,7 +20,7 @@ final readonly class ConversionResult implements Stringable
         return $this->value;
     }
 
-    public function round(int $precision = 2, int $mode = PHP_ROUND_HALF_UP): string
+    public function round(int $precision = 2, int $mode = \PHP_ROUND_HALF_UP): string
     {
         return number_format(round((float) $this->value, $precision, $mode), $precision, '.', '');
     }

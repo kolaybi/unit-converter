@@ -69,7 +69,8 @@ final class MassTest extends TestCase
         $this->assertNotEmpty($unit->symbol(), "{$unit->name} must have a symbol");
         $this->assertNotEmpty($unit->label(), "{$unit->name} must have a label");
         $this->assertNotEmpty($unit->multiplier(), "{$unit->name} must have a multiplier");
-        $this->assertIsNumeric($unit->multiplier(),
+        $this->assertIsNumeric(
+            $unit->multiplier(),
             "{$unit->name} multiplier must be numeric, got: {$unit->multiplier()}",
         );
     }
