@@ -233,7 +233,7 @@ enum Volume: string implements Unit
         $base = [$this->value, $this->symbol(), $this->label()];
 
         return match ($this) {
-            self::Litre  => [...$base, 'lt', 'LPA'], // @deprecated Rec 20 code LPA (litre of pure alcohol)
+            self::Litre  => [...$base, 'lt'],
             self::PintUS => [...$base, 'pnt'],
             default      => $base,
         };

@@ -38,6 +38,11 @@ enum Length: string implements Unit
     case MileStatuteMile          = 'SMI';
     case Picometre                = 'C52';
     case Parsec                   = 'C63';
+    case RackUnit                 = 'H80';
+    case BigPoint                 = 'H82';
+    case PrintPoint               = 'N3';
+    case Pica                     = 'R1';
+    case FootPerThousand          = 'E33';
 
     public function code(): string
     {
@@ -76,6 +81,11 @@ enum Length: string implements Unit
             self::MileStatuteMile          => 'mile',
             self::Picometre                => 'pm',
             self::Parsec                   => 'pc',
+            self::RackUnit                 => 'U',
+            self::BigPoint                 => 'bp',
+            self::PrintPoint               => 'N3',
+            self::Pica                     => 'R1',
+            self::FootPerThousand          => 'E33',
         };
     }
 
@@ -111,6 +121,11 @@ enum Length: string implements Unit
             self::MileStatuteMile          => 'mile (statute mile)',
             self::Picometre                => 'picometre',
             self::Parsec                   => 'parsec',
+            self::RackUnit                 => 'rack unit',
+            self::BigPoint                 => 'big point',
+            self::PrintPoint               => 'print point',
+            self::Pica                     => 'pica',
+            self::FootPerThousand          => 'foot per thousand',
         };
     }
 
@@ -160,6 +175,11 @@ enum Length: string implements Unit
             self::MileStatuteMile          => '1609.344',
             self::Picometre                => '0.000000000001',
             self::Parsec                   => '30856775814913700',
+            self::RackUnit                 => '0.04445',
+            self::BigPoint                 => '0.0003527778',
+            self::PrintPoint               => '0.000351',
+            self::Pica                     => '0.004217518',
+            self::FootPerThousand          => '0.0003048',
         };
     }
 

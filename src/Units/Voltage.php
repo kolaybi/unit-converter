@@ -50,7 +50,14 @@ enum Voltage: string implements Unit
      */
     public function aliases(): array
     {
-        return [$this->value, $this->symbol(), $this->label()];
+        $aliases = [$this->value, $this->symbol(), $this->label()];
+
+        if (self::Volt === $this) {
+            $aliases[] = '2G';
+            $aliases[] = '2H';
+        }
+
+        return $aliases;
     }
 
     public function multiplier(): string

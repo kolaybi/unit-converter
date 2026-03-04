@@ -19,7 +19,7 @@ final class NewPackagingUnitsTest extends TestCase
     public function testNewPackagingUnitsResolve(): void
     {
         $this->assertSame(Packaging::Deck, Converter::unit('DK'));
-        $this->assertSame(Packaging::Kit, Converter::unit('KI'));
+        $this->assertSame(Packaging::Kit, Converter::unit('KT'));
         $this->assertSame(Packaging::Pellet, Converter::unit('XPE'));
     }
 

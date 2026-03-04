@@ -12,6 +12,7 @@ use KolayBi\UnitConverter\Units\Length;
 use KolayBi\UnitConverter\Units\Mass;
 use KolayBi\UnitConverter\Units\MemoryCapacity;
 use KolayBi\UnitConverter\Units\Time;
+use KolayBi\UnitConverter\Units\Trade;
 use KolayBi\UnitConverter\Units\Volume;
 use PHPUnit\Framework\TestCase;
 
@@ -37,7 +38,7 @@ final class OfisApiAliasesTest extends TestCase
             '26'     => Mass::TonneMetricTon,
             'KTM'    => Length::Kilometre,
             'AYR'    => Time::Year,
-            'LPA'    => Volume::Litre,
+            'LPA'    => Trade::LitreOfPureAlcohol,
         ];
 
         foreach ($aliases as $alias => $expected) {
