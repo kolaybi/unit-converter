@@ -96,7 +96,12 @@ enum FlowRate: string implements Unit
     case StandardCubicMetrePerHour   = 'Q38';
     case NormalizedCubicMetrePerDay  = 'Q39';
     case NormalizedCubicMetrePerHour = 'Q40';
-    case ThousandCubicMetrePerDay    = 'TQD';
+    case ThousandCubicMetrePerDay      = 'TQD';
+    case LitrePerSecond                = 'G51';
+    case CentilitrePerSecond           = 'G53';
+    case DecilitrePerSecond            = 'G55';
+    case CubicInchPerHour              = 'G56';
+    case CubicMillimetrePerSecond      = 'G47';
 
     public function code(): string
     {
@@ -193,7 +198,12 @@ enum FlowRate: string implements Unit
             self::StandardCubicMetrePerHour   => 'std.m³/h',
             self::NormalizedCubicMetrePerDay  => 'norm.m³/d',
             self::NormalizedCubicMetrePerHour => 'norm.m³/h',
-            self::ThousandCubicMetrePerDay    => 'thousand m³/d',
+            self::ThousandCubicMetrePerDay      => 'thousand m³/d',
+            self::LitrePerSecond                => 'l/s',
+            self::CentilitrePerSecond           => 'cl/s',
+            self::DecilitrePerSecond            => 'dl/s',
+            self::CubicInchPerHour              => 'in³/h',
+            self::CubicMillimetrePerSecond      => 'mm³/s',
         };
     }
 
@@ -287,7 +297,12 @@ enum FlowRate: string implements Unit
             self::StandardCubicMetrePerHour   => 'Standard cubic metre per hour',
             self::NormalizedCubicMetrePerDay  => 'Normalized cubic metre per day',
             self::NormalizedCubicMetrePerHour => 'Normalized cubic metre per hour',
-            self::ThousandCubicMetrePerDay    => 'thousand cubic metre per day',
+            self::ThousandCubicMetrePerDay      => 'thousand cubic metre per day',
+            self::LitrePerSecond                => 'litre per second',
+            self::CentilitrePerSecond           => 'centilitre per second',
+            self::DecilitrePerSecond            => 'decilitre per second',
+            self::CubicInchPerHour              => 'cubic inch per hour',
+            self::CubicMillimetrePerSecond      => 'cubic millimetre per second',
         };
     }
 
@@ -395,7 +410,12 @@ enum FlowRate: string implements Unit
             self::StandardCubicMetrePerHour   => '0.000277778',
             self::NormalizedCubicMetrePerDay  => '0.0000115741',
             self::NormalizedCubicMetrePerHour => '0.000277778',
-            self::ThousandCubicMetrePerDay    => '0.0115741',
+            self::ThousandCubicMetrePerDay      => '0.0115741',
+            self::LitrePerSecond                => '0.001',
+            self::CentilitrePerSecond           => '0.00001',
+            self::DecilitrePerSecond            => '0.0001',
+            self::CubicInchPerHour              => '0.000000004552073',
+            self::CubicMillimetrePerSecond      => '0.000000001',
         };
     }
 
