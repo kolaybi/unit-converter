@@ -12,7 +12,9 @@ interface Unit
 
     public function label(): string;
 
-    /** @return list<string> */
+    /**
+     * @return list<string>
+     */
     public function aliases(): array;
 
     public function multiplier(): string;
