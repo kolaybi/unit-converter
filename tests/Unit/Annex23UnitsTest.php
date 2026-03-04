@@ -492,6 +492,6 @@ final class Annex23UnitsTest extends TestCase
 
     public function testTradeTotalCaseCount(): void
     {
-        $this->assertCount(988, Trade::cases());
+        $this->assertCount(978, Trade::cases());
     }
 }

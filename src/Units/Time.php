@@ -86,7 +86,12 @@ enum Time: string implements Unit
      */
     public function aliases(): array
     {
-        return [$this->value, $this->symbol(), $this->label()];
+        $base = [$this->value, $this->symbol(), $this->label()];
+
+        return match ($this) {
+            self::Year => [...$base, 'AYR'], // @deprecated Rec 20 code AYR
+            default    => $base,
+        };
     }
 
     public function multiplier(): string

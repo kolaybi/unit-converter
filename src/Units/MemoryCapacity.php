@@ -21,9 +21,9 @@ enum MemoryCapacity: string implements Unit
     case Tebibyte = 'E61';
     case Pebibyte = 'E60';
     case Exbibyte = 'E59';
-    case Bit     = 'A99';
-    case Kilobit = 'C37';
-    case Gigabit = 'B68';
+    case Bit      = 'A99';
+    case Kilobit  = 'C37';
+    case Gigabit  = 'B68';
 
     public function code(): string
     {
@@ -77,7 +77,17 @@ enum MemoryCapacity: string implements Unit
      */
     public function aliases(): array
     {
-        return [$this->value, $this->symbol(), $this->label()];
+        $base = [$this->value, $this->symbol(), $this->label()];
+
+        return match ($this) {
+            self::Byte     => [...$base, 'B'],
+            self::Megabyte => [...$base, 'MB'],
+            self::Terabyte => [...$base, 'TB'],
+            self::Bit      => [...$base, 'XBI'],
+            self::Kilobit  => [...$base, 'XKB'],
+            self::Gigabit  => [...$base, 'XGB'],
+            default        => $base,
+        };
     }
 
     public function multiplier(): string

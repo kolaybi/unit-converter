@@ -3,6 +3,18 @@
     "description": "A PHP 8.4+ unit conversion package compatible with UN/CEFACT Recommendation 20",
     "type": "library",
     "license": "MIT",
+    "keywords": [
+        "unit",
+        "converter",
+        "conversion",
+        "measurement",
+        "uncefact",
+        "rec20",
+        "gs1",
+        "e-document",
+        "e-fatura",
+        "bcmath"
+    ],
     "require": {
         "php": "^8.4",
         "ext-bcmath": "*"

@@ -28,6 +28,7 @@ enum Packaging: string implements Unit
     case Assortment = 'AS';
     case Assembly = 'AY';
     case Card = 'CG';
+    case Deck = 'DK';
     case Book = 'D63';
     case Round = 'D65';
     case Hank = 'HA';
@@ -54,7 +55,20 @@ enum Packaging: string implements Unit
     case Skein = 'SW';
     case Shipment = 'SX';
     case Syringe = 'SYR';
+    case Pellet = 'XPE';
     case HangingContainer = 'Z11';
+
+    /** @deprecated Use standard Rec 20 codes instead. */
+    case CarryingCapacityInMetricTonnes = 'CCT';
+
+    /** @deprecated Use standard Rec 20 codes instead. */
+    case GrossTonnage = 'GT';
+
+    /** @deprecated Use standard Rec 20 codes instead. */
+    case NumberOfCells = 'NCL';
+
+    /** @deprecated Use standard Rec 20 codes instead. */
+    case TankCylindrical = 'TK';
 
     public function code(): string
     {
@@ -69,52 +83,58 @@ enum Packaging: string implements Unit
     public function label(): string
     {
         return match ($this) {
-            self::Box              => 'box',
-            self::Packet           => 'packet',
-            self::Pack             => 'pack',
-            self::Bag              => 'bag',
-            self::Roll             => 'roll',
-            self::Drum             => 'drum',
-            self::Ball             => 'ball',
-            self::Reel             => 'reel',
-            self::Barrel           => 'barrel',
-            self::LinearMetre      => 'linear metre',
-            self::Tube             => 'tube',
-            self::Bottle           => 'bottle',
-            self::Tin              => 'tin',
-            self::Sack             => 'sack',
-            self::Person           => 'person',
-            self::BulkPack         => 'bulk pack',
-            self::Assortment       => 'assortment',
-            self::Assembly         => 'assembly',
-            self::Card             => 'card',
-            self::Book             => 'book',
-            self::Round            => 'round',
-            self::Hank             => 'hank',
-            self::Head             => 'head',
-            self::PipelineJoint    => 'pipeline joint',
-            self::Cake             => 'cake',
-            self::Kit              => 'kit',
-            self::Leaf             => 'leaf',
-            self::Lot              => 'lot',
-            self::Layer            => 'layer',
-            self::LumpSum          => 'lump sum',
-            self::Load             => 'load',
-            self::Panel            => 'panel',
-            self::FivePack         => 'five pack',
-            self::Pad              => 'pad',
-            self::Quire            => 'quire',
-            self::Ream             => 'ream',
-            self::Room             => 'room',
-            self::Square           => 'square',
-            self::Strip            => 'strip',
-            self::Stick            => 'stick',
-            self::StickCigarette   => 'stick, cigarette',
-            self::Straw            => 'straw',
-            self::Skein            => 'skein',
-            self::Shipment         => 'shipment',
-            self::Syringe          => 'syringe',
-            self::HangingContainer => 'hanging container',
+            self::Box                            => 'box',
+            self::Packet                         => 'packet',
+            self::Pack                           => 'pack',
+            self::Bag                            => 'bag',
+            self::Roll                           => 'roll',
+            self::Drum                           => 'drum',
+            self::Ball                           => 'ball',
+            self::Reel                           => 'reel',
+            self::Barrel                         => 'barrel',
+            self::LinearMetre                    => 'linear metre',
+            self::Tube                           => 'tube',
+            self::Bottle                         => 'bottle',
+            self::Tin                            => 'tin',
+            self::Sack                           => 'sack',
+            self::Person                         => 'person',
+            self::BulkPack                       => 'bulk pack',
+            self::Assortment                     => 'assortment',
+            self::Assembly                       => 'assembly',
+            self::Card                           => 'card',
+            self::Deck                           => 'deck',
+            self::Book                           => 'book',
+            self::Round                          => 'round',
+            self::Hank                           => 'hank',
+            self::Head                           => 'head',
+            self::PipelineJoint                  => 'pipeline joint',
+            self::Cake                           => 'cake',
+            self::Kit                            => 'kit',
+            self::Leaf                           => 'leaf',
+            self::Lot                            => 'lot',
+            self::Layer                          => 'layer',
+            self::LumpSum                        => 'lump sum',
+            self::Load                           => 'load',
+            self::Panel                          => 'panel',
+            self::FivePack                       => 'five pack',
+            self::Pad                            => 'pad',
+            self::Quire                          => 'quire',
+            self::Ream                           => 'ream',
+            self::Room                           => 'room',
+            self::Square                         => 'square',
+            self::Strip                          => 'strip',
+            self::Stick                          => 'stick',
+            self::StickCigarette                 => 'stick, cigarette',
+            self::Straw                          => 'straw',
+            self::Skein                          => 'skein',
+            self::Shipment                       => 'shipment',
+            self::Syringe                        => 'syringe',
+            self::Pellet                         => 'pellet',
+            self::HangingContainer               => 'hanging container',
+            self::CarryingCapacityInMetricTonnes => 'carrying capacity in metric tonnes',
+            self::GrossTonnage                   => 'gross tonnage',
+            self::NumberOfCells                  => 'number of cells',
+            self::TankCylindrical                => 'tank, cylindrical',
         };
     }
 
@@ -123,7 +143,9 @@ enum Packaging: string implements Unit
      */
     public function aliases(): array
     {
-        return [$this->value, $this->label()];
+        $base = [$this->value, $this->label()];
+
+        return $base;
     }
 
     public function multiplier(): string

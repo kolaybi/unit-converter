@@ -36,6 +36,8 @@ enum Length: string implements Unit
     case Link                     = 'LK';
     case LinearMetre              = 'LM';
     case MileStatuteMile          = 'SMI';
+    case Picometre                = 'C52';
+    case Parsec                   = 'C63';
     case RackUnit                 = 'H80';
     case BigPoint                 = 'H82';
     case PrintPoint               = 'N3';
@@ -77,6 +79,8 @@ enum Length: string implements Unit
             self::Link                     => 'lnk',
             self::LinearMetre              => 'lm',
             self::MileStatuteMile          => 'mile',
+            self::Picometre                => 'pm',
+            self::Parsec                   => 'pc',
             self::RackUnit                 => 'U',
             self::BigPoint                 => 'bp',
             self::PrintPoint               => 'N3',
@@ -115,6 +119,8 @@ enum Length: string implements Unit
             self::Link                     => 'link',
             self::LinearMetre              => 'linear metre',
             self::MileStatuteMile          => 'mile (statute mile)',
+            self::Picometre                => 'picometre',
+            self::Parsec                   => 'parsec',
             self::RackUnit                 => 'rack unit',
             self::BigPoint                 => 'big point',
             self::PrintPoint               => 'print point',
@@ -128,7 +134,13 @@ enum Length: string implements Unit
      */
     public function aliases(): array
     {
-        return [$this->value, $this->symbol(), $this->label()];
+        $base = [$this->value, $this->symbol(), $this->label()];
+
+        return match ($this) {
+            self::Micrometre => [...$base, 'mu'],
+            self::Kilometre  => [...$base, 'KTM'], // @deprecated Rec 20 code KTM
+            default          => $base,
+        };
     }
 
     public function multiplier(): string
@@ -161,6 +173,8 @@ enum Length: string implements Unit
             self::Link                     => '0.201168',
             self::LinearMetre              => '1',
             self::MileStatuteMile          => '1609.344',
+            self::Picometre                => '0.000000000001',
+            self::Parsec                   => '30856775814913700',
             self::RackUnit                 => '0.04445',
             self::BigPoint                 => '0.0003527778',
             self::PrintPoint               => '0.000351',
