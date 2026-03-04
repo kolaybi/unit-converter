@@ -113,7 +113,13 @@ enum Length: string implements Unit
      */
     public function aliases(): array
     {
-        return [$this->value, $this->symbol(), $this->label()];
+        $base = [$this->value, $this->symbol(), $this->label()];
+
+        return match ($this) {
+            self::Micrometre => [...$base, 'mu'],
+            self::Kilometre  => [...$base, 'KTM'], // @deprecated Rec 20 code KTM
+            default          => $base,
+        };
     }
 
     public function multiplier(): string

@@ -134,7 +134,12 @@ enum Energy: string implements Unit
      */
     public function aliases(): array
     {
-        return [$this->value, $this->symbol(), $this->label()];
+        $base = [$this->value, $this->symbol(), $this->label()];
+
+        return match ($this) {
+            self::FootPoundForce => [...$base, 'ftlb'],
+            default              => $base,
+        };
     }
 
     public function multiplier(): string

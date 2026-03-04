@@ -119,7 +119,12 @@ enum Mass: string implements Unit
      */
     public function aliases(): array
     {
-        return [$this->value, $this->symbol(), $this->label()];
+        $base = [$this->value, $this->symbol(), $this->label()];
+
+        return match ($this) {
+            self::TonneMetricTon => [...$base, '26'], // @deprecated Rec 20 code 26
+            default              => $base,
+        };
     }
 
     public function multiplier(): string

@@ -68,7 +68,14 @@ enum MemoryCapacity: string implements Unit
      */
     public function aliases(): array
     {
-        return [$this->value, $this->symbol(), $this->label()];
+        $base = [$this->value, $this->symbol(), $this->label()];
+
+        return match ($this) {
+            self::Byte     => [...$base, 'B'],
+            self::Megabyte => [...$base, 'MB'],
+            self::Terabyte => [...$base, 'TB'],
+            default        => $base,
+        };
     }
 
     public function multiplier(): string
