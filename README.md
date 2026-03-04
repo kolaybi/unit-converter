@@ -1,6 +1,6 @@
 # Unit Converter
 
-A PHP 8.4+ framework-agnostic package for converting between 743 units of measurement based on [UN/CEFACT Recommendation 20](https://unece.org/trade/uncefact/cl-recommendations) and the [GS1 unit conversion model](https://www.gs1.org/).
+A PHP 8.4+ framework-agnostic package for converting between 763 units of measurement based on [UN/CEFACT Recommendation 20](https://unece.org/trade/uncefact/cl-recommendations) and the [GS1 unit conversion model](https://www.gs1.org/).
 
 Uses arbitrary-precision math (bcmath) with the GS1 multiplier + offset formula to handle both linear conversions (mass, length, volume, etc.) and non-linear ones (temperature).
 
@@ -86,7 +86,7 @@ $result->to;                 // Target Unit enum
 
 ## Unit Categories
 
-53 categories covering 743 units:
+53 categories covering 763 units:
 
 | Category                    | Units | Category                   | Units |
 |-----------------------------|-------|----------------------------|-------|

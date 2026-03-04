@@ -25,24 +25,24 @@ final class OfisApiAliasesTest extends TestCase
     public function testOfisApiAliasesResolve(): void
     {
         $aliases = [
-            'B' => MemoryCapacity::Byte,
-            'MB' => MemoryCapacity::Megabyte,
-            'TB' => MemoryCapacity::Terabyte,
-            'lt' => Volume::Litre,
-            'pnt' => Volume::PintUS,
-            'ftlb' => Energy::FootPoundForce,
-            'mu' => Length::Micrometre,
-            'lt/h' => FlowRate::LitrePerHour,
+            'B'      => MemoryCapacity::Byte,
+            'MB'     => MemoryCapacity::Megabyte,
+            'TB'     => MemoryCapacity::Terabyte,
+            'lt'     => Volume::Litre,
+            'pnt'    => Volume::PintUS,
+            'ftlb'   => Energy::FootPoundForce,
+            'mu'     => Length::Micrometre,
+            'lt/h'   => FlowRate::LitrePerHour,
             'lt/min' => FlowRate::LitrePerMinute,
-            '26' => Mass::TonneMetricTon,
-            'KTM' => Length::Kilometre,
-            'AYR' => Time::Year,
-            'LPA' => Volume::Litre,
+            '26'     => Mass::TonneMetricTon,
+            'KTM'    => Length::Kilometre,
+            'AYR'    => Time::Year,
+            'LPA'    => Volume::Litre,
         ];
 
         foreach ($aliases as $alias => $expected) {
             $alias = (string) $alias;
-            $this->assertSame($expected, Converter::unit($alias), "Alias '$alias' should resolve");
+            $this->assertSame($expected, Converter::unit($alias), "Alias '{$alias}' should resolve");
         }
     }
 }
