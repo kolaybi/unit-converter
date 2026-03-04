@@ -24,6 +24,21 @@ enum Packaging: string implements Unit
     case Tin = 'TN';
     case Sack = 'SA';
     case Person = 'IE';
+    case Deck   = 'DK';
+    case Kit    = 'KI';
+    case Pellet = 'XPE';
+
+    /** @deprecated Use standard Rec 20 codes instead. */
+    case CarryingCapacityInMetricTonnes = 'CCT';
+
+    /** @deprecated Use standard Rec 20 codes instead. */
+    case GrossTonnage = 'GT';
+
+    /** @deprecated Use standard Rec 20 codes instead. */
+    case NumberOfCells = 'NCL';
+
+    /** @deprecated Use standard Rec 20 codes instead. */
+    case TankCylindrical = 'TK';
 
     public function code(): string
     {
@@ -38,21 +53,28 @@ enum Packaging: string implements Unit
     public function label(): string
     {
         return match ($this) {
-            self::Box         => 'box',
-            self::Packet      => 'packet',
-            self::Pack        => 'pack',
-            self::Bag         => 'bag',
-            self::Roll        => 'roll',
-            self::Drum        => 'drum',
-            self::Ball        => 'ball',
-            self::Reel        => 'reel',
-            self::Barrel      => 'barrel',
-            self::LinearMetre => 'linear metre',
-            self::Tube        => 'tube',
-            self::Bottle      => 'bottle',
-            self::Tin         => 'tin',
-            self::Sack        => 'sack',
-            self::Person      => 'person',
+            self::Box                            => 'box',
+            self::Packet                         => 'packet',
+            self::Pack                           => 'pack',
+            self::Bag                            => 'bag',
+            self::Roll                           => 'roll',
+            self::Drum                           => 'drum',
+            self::Ball                           => 'ball',
+            self::Reel                           => 'reel',
+            self::Barrel                         => 'barrel',
+            self::LinearMetre                    => 'linear metre',
+            self::Tube                           => 'tube',
+            self::Bottle                         => 'bottle',
+            self::Tin                            => 'tin',
+            self::Sack                           => 'sack',
+            self::Person                         => 'person',
+            self::Deck                           => 'deck',
+            self::Kit                            => 'kit',
+            self::Pellet                         => 'pellet',
+            self::CarryingCapacityInMetricTonnes => 'carrying capacity in metric tonnes',
+            self::GrossTonnage                   => 'gross tonnage',
+            self::NumberOfCells                  => 'number of cells',
+            self::TankCylindrical                => 'tank, cylindrical',
         };
     }
 

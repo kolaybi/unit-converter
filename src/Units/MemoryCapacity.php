@@ -21,6 +21,9 @@ enum MemoryCapacity: string implements Unit
     case Tebibyte = 'E61';
     case Pebibyte = 'E60';
     case Exbibyte = 'E59';
+    case Bit      = 'XBI';
+    case Kilobit  = 'XKB';
+    case Gigabit  = 'XGB';
 
     public function code(): string
     {
@@ -42,6 +45,9 @@ enum MemoryCapacity: string implements Unit
             self::Tebibyte => 'Tibyte',
             self::Pebibyte => 'Pibyte',
             self::Exbibyte => 'Eibyte',
+            self::Bit      => 'bit',
+            self::Kilobit  => 'Kbit',
+            self::Gigabit  => 'Gbit',
         };
     }
 
@@ -60,6 +66,9 @@ enum MemoryCapacity: string implements Unit
             self::Tebibyte => 'tebibyte',
             self::Pebibyte => 'pebibyte',
             self::Exbibyte => 'exbibyte',
+            self::Bit      => 'bit',
+            self::Kilobit  => 'kilobit',
+            self::Gigabit  => 'gigabit',
         };
     }
 
@@ -68,7 +77,14 @@ enum MemoryCapacity: string implements Unit
      */
     public function aliases(): array
     {
-        return [$this->value, $this->symbol(), $this->label()];
+        $base = [$this->value, $this->symbol(), $this->label()];
+
+        return match ($this) {
+            self::Byte     => [...$base, 'B'],
+            self::Megabyte => [...$base, 'MB'],
+            self::Terabyte => [...$base, 'TB'],
+            default        => $base,
+        };
     }
 
     public function multiplier(): string
@@ -86,6 +102,9 @@ enum MemoryCapacity: string implements Unit
             self::Tebibyte => '1099511627776',
             self::Pebibyte => '1125899906842624',
             self::Exbibyte => '1152921504606847000',
+            self::Bit      => '0.125',
+            self::Kilobit  => '125',
+            self::Gigabit  => '125000000',
         };
     }
 

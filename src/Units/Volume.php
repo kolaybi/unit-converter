@@ -230,7 +230,13 @@ enum Volume: string implements Unit
      */
     public function aliases(): array
     {
-        return [$this->value, $this->symbol(), $this->label()];
+        $base = [$this->value, $this->symbol(), $this->label()];
+
+        return match ($this) {
+            self::Litre  => [...$base, 'lt', 'LPA'], // @deprecated Rec 20 code LPA (litre of pure alcohol)
+            self::PintUS => [...$base, 'pnt'],
+            default      => $base,
+        };
     }
 
     public function multiplier(): string

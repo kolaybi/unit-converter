@@ -12,6 +12,9 @@ enum AngularImpulse: string implements Unit
     case NewtonMetreSecond             = 'C53';
     case KilogramMetreSquaredPerSecond = 'B33';
 
+    /** @deprecated Use standard Rec 20 codes instead. */
+    case KilogramSquareMetre = 'B32';
+
     public function code(): string
     {
         return $this->value;
@@ -22,6 +25,7 @@ enum AngularImpulse: string implements Unit
         return match ($this) {
             self::NewtonMetreSecond             => 'N·m·s',
             self::KilogramMetreSquaredPerSecond => 'kg·m²/s',
+            self::KilogramSquareMetre           => 'kg·m²',
         };
     }
 
@@ -30,6 +34,7 @@ enum AngularImpulse: string implements Unit
         return match ($this) {
             self::NewtonMetreSecond             => 'newton metre second',
             self::KilogramMetreSquaredPerSecond => 'kilogram metre squared per second',
+            self::KilogramSquareMetre           => 'kilogram square metre',
         };
     }
 
@@ -46,6 +51,7 @@ enum AngularImpulse: string implements Unit
         return match ($this) {
             self::NewtonMetreSecond             => '1',
             self::KilogramMetreSquaredPerSecond => '1',
+            self::KilogramSquareMetre           => '1',
         };
     }
 
