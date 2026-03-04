@@ -9,6 +9,7 @@ use KolayBi\UnitConverter\Enums\UnitCategory;
 use KolayBi\UnitConverter\Exceptions\NonConvertibleUnitException;
 use KolayBi\UnitConverter\Units\Counting;
 use KolayBi\UnitConverter\Units\MemoryCapacity;
+use KolayBi\UnitConverter\Units\Packaging;
 use KolayBi\UnitConverter\Units\SignalRate;
 use KolayBi\UnitConverter\Units\TextileDensity;
 use KolayBi\UnitConverter\Units\Voltage;
@@ -379,5 +380,63 @@ final class Annex23UnitsTest extends TestCase
         // 1 ping = 3.305 m²
         $result = Converter::convert(1)->from('E19')->to('MTK');
         $this->assertEqualsWithDelta(3.305, $result->toFloat(), 0.001);
+    }
+
+    // ── Packaging: 31 new non-convertible cases ──
+
+    #[DataProvider('packagingNewCasesProvider')]
+    public function testPackagingNewCasesResolve(string $code): void
+    {
+        $unit = Converter::unit($code);
+
+        $this->assertInstanceOf(Packaging::class, $unit);
+        $this->assertSame($code, $unit->code());
+        $this->assertFalse($unit->category()->isConvertible());
+    }
+
+    #[DataProvider('packagingNewCasesProvider')]
+    public function testPackagingNewCasesThrowOnConversion(string $code): void
+    {
+        $this->expectException(NonConvertibleUnitException::class);
+
+        Converter::convert(1)->from($code)->to('BX');
+    }
+
+    /**
+     * @return iterable<string, array{string}>
+     */
+    public static function packagingNewCasesProvider(): iterable
+    {
+        yield 'AB' => ['AB'];
+        yield 'AS' => ['AS'];
+        yield 'AY' => ['AY'];
+        yield 'CG' => ['CG'];
+        yield 'D63' => ['D63'];
+        yield 'D65' => ['D65'];
+        yield 'HA' => ['HA'];
+        yield 'HEA' => ['HEA'];
+        yield 'JNT' => ['JNT'];
+        yield 'KA' => ['KA'];
+        yield 'KT' => ['KT'];
+        yield 'LEF' => ['LEF'];
+        yield 'LO' => ['LO'];
+        yield 'LR' => ['LR'];
+        yield 'LS' => ['LS'];
+        yield 'NL' => ['NL'];
+        yield 'OA' => ['OA'];
+        yield 'P5' => ['P5'];
+        yield 'PD' => ['PD'];
+        yield 'QR' => ['QR'];
+        yield 'RM' => ['RM'];
+        yield 'ROM' => ['ROM'];
+        yield 'SQ' => ['SQ'];
+        yield 'SR' => ['SR'];
+        yield 'STC' => ['STC'];
+        yield 'STK' => ['STK'];
+        yield 'STW' => ['STW'];
+        yield 'SW' => ['SW'];
+        yield 'SX' => ['SX'];
+        yield 'SYR' => ['SYR'];
+        yield 'Z11' => ['Z11'];
     }
 }

@@ -24,6 +24,37 @@ enum Packaging: string implements Unit
     case Tin = 'TN';
     case Sack = 'SA';
     case Person = 'IE';
+    case BulkPack = 'AB';
+    case Assortment = 'AS';
+    case Assembly = 'AY';
+    case Card = 'CG';
+    case Book = 'D63';
+    case Round = 'D65';
+    case Hank = 'HA';
+    case Head = 'HEA';
+    case PipelineJoint = 'JNT';
+    case Cake = 'KA';
+    case Kit = 'KT';
+    case Leaf = 'LEF';
+    case Lot = 'LO';
+    case Layer = 'LR';
+    case LumpSum = 'LS';
+    case Load = 'NL';
+    case Panel = 'OA';
+    case FivePack = 'P5';
+    case Pad = 'PD';
+    case Quire = 'QR';
+    case Ream = 'RM';
+    case Room = 'ROM';
+    case Square = 'SQ';
+    case Strip = 'SR';
+    case Stick = 'STC';
+    case StickCigarette = 'STK';
+    case Straw = 'STW';
+    case Skein = 'SW';
+    case Shipment = 'SX';
+    case Syringe = 'SYR';
+    case HangingContainer = 'Z11';
 
     public function code(): string
     {
@@ -52,7 +83,38 @@ enum Packaging: string implements Unit
             self::Bottle      => 'bottle',
             self::Tin         => 'tin',
             self::Sack        => 'sack',
-            self::Person      => 'person',
+            self::Person           => 'person',
+            self::BulkPack         => 'bulk pack',
+            self::Assortment       => 'assortment',
+            self::Assembly         => 'assembly',
+            self::Card             => 'card',
+            self::Book             => 'book',
+            self::Round            => 'round',
+            self::Hank             => 'hank',
+            self::Head             => 'head',
+            self::PipelineJoint    => 'pipeline joint',
+            self::Cake             => 'cake',
+            self::Kit              => 'kit',
+            self::Leaf             => 'leaf',
+            self::Lot              => 'lot',
+            self::Layer            => 'layer',
+            self::LumpSum          => 'lump sum',
+            self::Load             => 'load',
+            self::Panel            => 'panel',
+            self::FivePack         => 'five pack',
+            self::Pad              => 'pad',
+            self::Quire            => 'quire',
+            self::Ream             => 'ream',
+            self::Room             => 'room',
+            self::Square           => 'square',
+            self::Strip            => 'strip',
+            self::Stick            => 'stick',
+            self::StickCigarette   => 'stick, cigarette',
+            self::Straw            => 'straw',
+            self::Skein            => 'skein',
+            self::Shipment         => 'shipment',
+            self::Syringe          => 'syringe',
+            self::HangingContainer => 'hanging container',
         };
     }
 
